@@ -4,99 +4,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" />
-    <title>order here!</title>
+    <title>Cocktail Machine</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <nav class="top-bar">
+        <div class="logo">
+            <img src="./images/Logo (2).png" alt="Company Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#order">Order</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+        <div class="cart-icon" onclick="toggleCart()">
+            🛒 Cart (<span id="cart-count">0</span>)
+        </div>
+    </nav>
 
     <div class="container">
-        <nav class="menu-container">
-            <!-- logo -->
-            <a href="https://nereyamantzur.github.io/cocktails/main.html" class="menu-logo">
-                <img src="./images/logo.png" alt="My Awesome Website" />
-            </a>
+        <section id="about" style="text-align: left;" class="simple-font">
+            <h1>About Us</h1>
+            <p>We are second-year students in the honors program at Afeka College of Engineering in Tel Aviv.<br>
+                Our team consists of Dotan Valano, Ohad Agam, Roy Dor, Nerya Mantzur, and Aviv Bachana.</p>
+            <p>Over the past year, Israel has been under attack, leading to the evacuation of many citizens from their
+                homes. As a group, we decided to brainstorm technological ideas that could assist those returning to
+                their homes in community centers—ideas that would enhance social experiences and help rebuild
+                communities.</p>
+            <p>Our group chose to create a cocktail machine that would be installed in these community centers. This
+                machine automatically prepares cocktails, from receiving the order to serving the drink, aiming to bring
+                people together and foster a sense of community.</p>
+        </section>
 
-        </nav>
-        <h1>Cocktail Menu</h1>
-        <div class="cocktail-grid" id="cocktailItem ">
-
-            <div class="cocktailItem" onclick="margarita()">
-                <img src="./images/margarita.jpg" alt="Margarita" />
-                <p>Margarita</p>
-                <div class="options">
-                    <p class="cocktailOrder" id="margarita" onclick="margarita()"> <b>Order!</b></p>
-                </div>
-            </div>
-
-            <div class="cocktailItem" onclick="martini()">
-                <img src="./images/martini.jpg" alt="Martini" />
-                <p>Martini</p>
-                <div class="options">
-                    <p class="cocktailOrder" id="martini" onclick="martini()"> <b>Order!</b></p>
-                </div>
-            </div>
-
-            <div class="cocktailItem" onclick="toggleOptions(event,'Bloody Mary')">
-                <img src="./images/bloodyMary.jpg" alt="Bloody Mary" />
-                <p>Bloody Mary</p>
-                <div class="options">
-                    <p class="cocktailOrder" id="bloodyMary" onclick="turnOn()"> <b>Order!</b></p>
-                </div>
-            </div>
-
-            <div class="cocktailItem" onclick="toggleOptions(event,'Pina Colada')">
-                <img src="./images/pinaColada.avif" alt="Pina Colada" />
-                <p>Pina Colada</p>
-                <div class="options">
-                    <p class="cocktailOrder" id="pinaColada" onclick="turnOn()"> <b>Order!</b></p>
+        <section id="order">
+            <h1>Order Your Cocktail</h1>
+            <div class="cocktail-grid" id="cocktailItem">
+                <div class="cocktailItem">
+                    <h2>Margarita</h2>
+                    <img src="./images/margarita.jpg" alt="Margarita" />
+                    <p>Price: $10</p>
+                    <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
+                    <button
+                        onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to
+                        Cart</button>
                 </div>
 
-                <!-- Add more cocktail items as needed -->
-            </div>
-            <div class="cocktailItem" onclick="toggleOptions(event,'diy')">
-                <img src="./images/diy.jpg" alt="diy" />
-                <p>DIY</p>
-                <div class="options">
-                    <label> Select first 30 ml<br></label>
-                    <select class="choose">
-                        <option>-select-</option>
-                        <option>tequilla</option>
-                        <option>vodka</option>
-                        <option>gin</option>
-                        <option>rum</option>
-                    </select>
-                    <label><br>Select second 30 ml<br></label>
-                    <select class="choose">
-                        <option>-select-</option>
-                        <option>tequilla</option>
-                        <option>vodka</option>
-                        <option>gin</option>
-                        <option>rum</option>
-                    </select>
-                    <label><br>Select third 30 ml<br></label>
-                    <select class="choose">
-                        <option>-select-</option>
-                        <option>tequilla</option>
-                        <option>vodka</option>
-                        <option>gin</option>
-                        <option>rum</option>
-                    </select>
+                <div class="cocktailItem">
+                    <h2>Martini</h2>
+                    <img src="./images/martini.jpg" alt="Martini" />
+                    <p>Price: $12</p>
+                    <input type="number" id="martini-quantity" name="quantity" min="1" max="10" value="1">
+                    <button onclick="addToCart('Martini', document.getElementById('martini-quantity').value, 12)">Add to
+                        Cart</button>
+                </div>
 
-                    <p class="cocktailOrder" id="diy" onclick="turnOn()"> <b>Order!</b></p>
+                <div class="cocktailItem">
+                    <h2>Bloody Mary</h2>
+                    <img src="./images/bloodyMary.jpg" alt="Bloody Mary" />
+                    <p>Price: $11</p>
+                    <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
+                    <button
+                        onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add
+                        to Cart</button>
+                </div>
+
+                <div class="cocktailItem">
+                    <h2>Pina Colada</h2>
+                    <img src="./images/pinaColada.avif" alt="Pina Colada" />
+                    <p>Price: $13</p>
+                    <input type="number" id="pinaColada-quantity" name="quantity" min="1" max="10" value="1">
+                    <button
+                        onclick="addToCart('Pina Colada', document.getElementById('pinaColada-quantity').value, 13)">Add
+                        to Cart</button>
+                </div>
+
+                <div class="cocktailItem">
+                    <h2>DIY</h2>
+                    <img src="./images/diy.jpg" alt="DIY" />
+                    <p>Price: $15</p>
+                    <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
+                    <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to
+                        Cart</button>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section id="faq" style="text-align: left;" class="simple-font">
+            <h1>FAQ</h1>
+            <div class="faq-item">
+                <h2>What was the inspiration behind your project?</h2>
+                <p>As evacuees return to their homes, we want them to be able to rebuild their communities, connect, and
+                    enjoy the simple things in life again. Alcohol is a significant social focus for many people, and it
+                    can help achieve just that.</p>
+            </div>
+            <div class="faq-item">
+                <h2>How does your cocktail machine work?</h2>
+                <p>The cocktail machine operates using a barcode scan that directs the user to our website. On the
+                    website, users can order a variety of pre-made cocktails or create a custom drink. The website sends
+                    the command to the machine, which is powered by an Arduino. The Arduino sends the command to the
+                    valves, which open the drink containers, thus assembling the drink.</p>
+            </div>
+            <div class="faq-item">
+                <h2>What technologies did you use to build the machine?</h2>
+                <p>The machine is powered by an Arduino that controls the valves opening the drink containers. The
+                    commands are sent via our website after users scan a barcode or place an order directly.</p>
+            </div>
+            <div class="faq-item">
+                <h2>Who is this cocktail machine intended for?</h2>
+                <p>This machine is for anyone who loves technology, simplicity, speed, and, of course, alcohol.</p>
+            </div>
+            <div class="faq-item">
+                <h2>What challenges did you encounter during development?</h2>
+                <p>One of the significant challenges was integrating an ice machine into the system. Currently, our
+                    machine does not support ice shaking, but a future version of the machine will include this feature.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="simple-font" style="float: left;">
+            <h1>Contact Us</h1>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
     </div>
-    <h5>
-        <footer>
-            <p>&copy; 2024 Afeka cocktail machine</p>
-        </footer>
-    </h5>
 
-    <h1>ESP32 LED Control</h1>
-    <button onclick="turnOff()">Turn Off</button>
-    <p id="status"></p>
+    <div id="cart-sidebar">
+        <h2>Your Cart</h2>
+        <button onclick="toggleCart()">✖</button>
+        <div id="cart-content">
+            <!-- Cart items will be displayed here -->
+        </div>
+        <p>Total: $<span id="total-price">0</span></p>
+        <button onclick="placeOrder()">Place Order</button>
+    </div>
 
     <script src="script.js"></script>
 </body>

@@ -1,59 +1,76 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
+#include <WiFi.h>       // For connecting ESP32 to WiFi
+#include <WebServer.h>  // ESP32 web server library
+#include <ArduinoOTA.h> // For enabling over-the-air updates
 
-const char* ssid = "Uliel";
-const char* password = "0542400393";
+const char *ssid = "Uliel";
+const char *password = "0542400393";
 
-ESP8266WebServer server(80);
+const int ledPin1 = 18;
+const int ledPin2 = 19;
 
-const int ledPin1 = D1;
-const int ledPin2 = D2; // Pin connected to the lightbulb
+WebServer server(80); // Web server object for ESP32
 
-void setup() {
+void setup()
+{
     pinMode(ledPin1, OUTPUT);
-    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin1, LOW); // Ensure LED is initially off
     pinMode(ledPin2, OUTPUT);
-    digitalWrite(ledPin2, HIGH); // Ensure light is initially off
-
+    digitalWrite(ledPin2, LOW); // Ensure LED is initially off
+    pinMode(6, OUTPUT);
+    for (int i = 1; i < 18; i++)
+    {
+        digitalWrite(6, LOW);
+        delay(500);
+        digitalWrite(6, HIGH);
+        delay(500);
+        digitalWrite(6, LOW);
+        delay(500);
+    }
     Serial.begin(115200);
     delay(10);
 
     WiFi.begin(ssid, password);
-    while (WiFi.status() != WL_CONNECTED) {
+    Serial.print("Connecting to WiFi");
+    while (WiFi.status() != WL_CONNECTED)
+    {
         delay(500);
         Serial.print(".");
     }
-    Serial.println("");
-    Serial.println("WiFi connected");
-    Serial.println("IP address: ");
-    Serial.println(WiFi.localIP()); // Print the obtained IP address to Serial Monitor
+    Serial.println("\nWiFi connected");
+    Serial.print("IP address: ");
+    Serial.println(WiFi.localIP());
 
-    server.on("/", HTTP_GET, handleRoot);
-    server.on("/turn-on", HTTP_GET, handleOn);
+    ArduinoOTA.begin(); // Starts OTA
+
+    server.on("/martini", HTTP_GET, martini);
+    server.on("/margarita", HTTP_GET, margarita);
     server.on("/turn-off", HTTP_GET, handleOff);
 
     server.begin();
     Serial.println("HTTP server started");
 }
 
-void loop() {
+void loop()
+{
     server.handleClient();
+    ArduinoOTA.handle(); // Handle OTA updates
 }
 
-void handleRoot() {
-    server.send(200, "text/plain", "Welcome to the ESP8266 Web Server");
-}
-
-void handleOn() {
+void margarita()
+{
     digitalWrite(ledPin1, HIGH);
-    digitalWrite(ledPin2, HIGH);
-    delay(1000);
-    digitalWrite(ledPin2, LOW);
-    server.send(200, "text/plain", "Lightbulb turned on");
+    server.send(200, "text/plain", "LED 1 is ON");
 }
 
-void handleOff() {
+void martini()
+{
+    digitalWrite(ledPin2, HIGH);
+    server.send(200, "text/plain", "LED 2 is ON");
+}
+
+void handleOff()
+{
     digitalWrite(ledPin1, LOW);
     digitalWrite(ledPin2, LOW);
-    server.send(200, "text/plain", "Lightbulb turned off");
+    server.send(200, "text/plain", "Both LEDs are OFF");
 }
