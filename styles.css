@@ -3,12 +3,23 @@
 
 /* General Styling */
 body {
+  align-items: center;
+  min-height: 100vh;
   margin: 0;
-  padding: 0;
-  font-family: 'Lato', sans-serif;
-  /* Body font */
   background-color: #1a1a1a;
+  /* Matches background */
   color: #ffffff;
+}
+
+/* Container Styling */
+.container {
+  max-width: 100%;
+  text-align: left;
+  background-color: #111;
+  border-radius: 0 0 0 15px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.175);
+  padding: 150px;
+  padding-top: 30px;
 }
 
 /* Navigation Bar Styling */
@@ -23,6 +34,7 @@ body {
 
 .logo img {
   height: 50px;
+  border-radius: 5px;
 }
 
 .nav-links {
@@ -40,8 +52,6 @@ body {
   color: #ffffff;
   text-decoration: none;
   font-size: 16px;
-  font-family: 'Lato', sans-serif;
-  /* Body text font for links */
 }
 
 .nav-links a:hover {
@@ -53,31 +63,17 @@ body {
   cursor: pointer;
 }
 
-/* Container Styling */
-.container {
-  max-width: 100%;
-  margin-top: 20px;
-  text-align: left;
-  background-color: #111;
-  padding-bottom: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.175);
-  padding-left: 15px;
-}
 
-/* Section Titles and Cocktail Titles */
+/* Section Titles and Text Styling */
 h1,
 h2,
 .cocktailItem h2 {
   font-family: 'Playfair Display', serif;
-  /* Unified title font */
   color: #fff;
 }
 
-/* About Us and FAQ */
 .simple-font {
   font-family: 'Lato', sans-serif;
-  /* Body text font */
 }
 
 /* Cocktail Grid Styling */
@@ -111,7 +107,6 @@ h2,
   font-size: 16px;
   margin: 10px 0;
   font-family: 'Lato', sans-serif;
-  /* Body text font */
 }
 
 button {
@@ -132,6 +127,7 @@ button:hover {
   position: fixed;
   top: 0;
   right: -300px;
+  /* Hidden by default */
   width: 300px;
   height: 100%;
   background-color: #111;
@@ -143,10 +139,10 @@ button:hover {
 
 #cart-sidebar.open {
   right: 0;
+  /* Slide in from the right */
 }
 
 .cart-item {
-  display: flex;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -159,33 +155,59 @@ button:hover {
   margin-right: 10px;
 }
 
-/* Contact Us Form Styling */
-#contact-form {
-  max-width: 700px;
-  margin: 0;
+/* Contact Section Styling */
+.contact-section {
+  width: 30%;
+  margin: 0 auto;
+  margin-top: -5%;
   padding: 20px;
   background-color: #1e1e1e;
-  /* Darker gray background */
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  /* Slightly stronger shadow for depth */
-  border: 1px solid #444;
-  /* Subtle border to define the area */
+  align-items: center;
+  margin-bottom: 50px;
 }
 
-#contact-form label {
-  display: block;
+/* Section Title Styling */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  max-width: fit-content;
+  margin: auto;
+}
+
+.contact-form label {
+  align-items: center;
+  font-family: 'Lato', sans-serif;
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 5px;
   color: #fff;
+  margin-bottom: 5px;
+  text-align: left;
+  display: block;
 }
 
-#contact-form input,
-#contact-form textarea {
-  width: 100%;
+.contact-form input,
+.contact-form textarea {
   padding: 10px;
-  margin-bottom: 15px;
+  width: 100%;
+  max-width: 100%;
+  margin: left;
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #333;
@@ -193,141 +215,67 @@ button:hover {
   font-size: 14px;
 }
 
-#contact-form button {
+/* Button Styling */
+.submit-button {
   background-color: #333;
   color: #fff;
   border: 1px solid #fff;
-  padding: 10px 15px;
+  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
-  width: 100%;
   font-size: 16px;
   font-weight: bold;
+  text-align: center;
+  width: 30%;
 }
 
-#contact-form button:hover {
+.submit-button:hover {
   background-color: #444;
 }
 
 /* Responsive Styling */
 @media screen and (max-width: 600px) {
   .container {
-    width: 100%;
     padding: 10px;
+    margin-top: 15px;
   }
 
   .cocktailItem {
-    width: 100%;
-    margin-bottom: 10px;
+    padding: 15px;
   }
 
-  .cocktail-grid {
-    grid-template-columns: 1fr;
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
   }
 
   #cart-sidebar {
     width: 100%;
+    height: auto;
   }
-}
 
-.simple-font {
-  font-family: Arial, Helvetica, sans-serif;
-}
+  /* Contact Section Styling */
+  .contact-section {
+    width: auto;
+    margin: 0 auto;
+    margin-top: -5%;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    align-items: center;
+    margin-bottom: 50px;
+  }
 
-h1,
-h2 {
-  font-family: 'Courier New', Courier, monospace;
-}
-
-.container {
-  max-width: 100%;
-  margin-top: 20px;
-  text-align: left;
-  background-color: #111;
-  padding-bottom: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.175);
-  padding-left: 15px;
-}
-
-/* Contact Us form styling */
-#contact-form {
-  max-width: 500px;
-  margin: 0;
-  padding: 20px;
-  background-color: rgb(0, 0, 0) border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-#contact-form label {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #fff;
-}
-
-#contact-form input,
-#contact-form textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #333;
-  color: #fff;
-  font-size: 14px;
-}
-
-#contact-form button {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-#contact-form button:hover {
-  background-color: #444;
-}
-
-/* Cart sidebar styling */
-#cart-sidebar {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 300px;
-  height: 100%;
-  background-color: #111;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  transition: right 0.3s ease;
-  z-index: 1001;
-}
-
-#cart-sidebar.open {
-  right: 0;
-}
-
-#cart-sidebar h2 {
-  margin-top: 0;
-  display: inline-block;
-}
-
-#cart-sidebar button {
-  display: inline-block;
-  float: right;
-  background-color: transparent;
-  color: #fff;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#cart-sidebar button:hover {
-  color: #f00;
+  /* Form Styling */
+  .contact-form {
+    display: block;
+    align-items: center;
+    justify-content: center;
+  }
 }
