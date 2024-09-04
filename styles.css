@@ -68,7 +68,7 @@ body {
     color: #fff;
     font-family: 'Merriweather', serif;
     z-index: 1002;
-    padding-right: 15px; /* Add padding to avoid cutoff */
+    padding-right: 50px; /* Add padding to avoid cutoff */
 }
 
 
