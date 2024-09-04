@@ -80,39 +80,7 @@
             color: #fff;
             font-family: 'Merriweather', serif;
             z-index: 1002;
-        padding-right: 40px; /* Add padding to avoid cutoff */
-
-        }
-
-        /* Hamburger menu for mobile */
-        .menu-icon {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1002;
-            margin-right: 15px; /* Add margin for spacing between icons */
-        }
-
-        .nav-links.mobile {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background-color: #111;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .nav-links.mobile li {
-            padding: 15px 0;
-            text-align: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .nav-links.mobile a {
-            display: block;
-            width: 100%;
+            padding-right: 40px;
         }
 
         /* Ensure margin below top bar */
@@ -140,7 +108,7 @@
             margin-top: 20px;
             padding: 15px;
         }
-        
+
         .cocktailItem {
             font-size: larger;
             text-align: center;
@@ -151,50 +119,49 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;  /* Ensure each item takes up the same vertical space */
+            height: 100%;
         }
-        
+
         .cocktailItem h2 {
             font-family: 'Merriweather', serif;
-            margin-bottom: 10px;  /* Ensures consistent spacing */
+            margin-bottom: 10px;
         }
-        
+
         .cocktailItem img {
             width: 100%;
             height: auto;
             object-fit: cover;
             border-radius: 15px;
-            margin-bottom: 10px; /* Ensures consistent spacing */
+            margin-bottom: 10px;
         }
-        
+
         .action-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 10px;
-            margin-top: auto;  /* Pushes the button/input to the bottom of each item */
+            margin-top: auto;
         }
-        
+
         .action-container input {
             width: 50px;
             text-align: center;
-            padding: 3px;
+            padding: 5px;
         }
-        
+
         button {
             background-color: #000;
             color: #fff;
             border: 1px solid #fff;
-            padding: 8px;
-            border-radius: 1px;
+            padding: 10px;
+            border-radius: 5px;
             cursor: pointer;
             font-family: 'Roboto', sans-serif;
         }
-        
+
         button:hover {
             background-color: #333;
         }
-
 
         /* Cart Sidebar */
         #cart-sidebar {
@@ -217,6 +184,7 @@
         /* Cart item styles */
         .cart-item {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
@@ -229,125 +197,29 @@
             margin-right: 10px;
         }
 
-        /* Contact Us form styling */
-        #contact-form {
-            max-width: 600px;
-            margin: 0;
-            padding: 20px;
-            background-color: #222;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        /* Quantity Controls */
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 150px;
+            margin: 10px 0;
         }
 
-        #contact-form label {
-            display: block;
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 5px;
+        .quantity-controls button {
+            background-color: #000;
             color: #fff;
-        }
-
-        #contact-form input,
-        #contact-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #333;
-            color: #fff;
-            font-size: 14px;
-        }
-
-        #contact-form button {
-            background-color: #333;
-            color: #fff;
-            border: 0px solid #fff;
-            padding: 15px 15px;
-            border-radius: 5px;
+            border: 1px solid #fff;
+            padding: 5px 10px;
             cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            font-weight: bold;
         }
 
-        #contact-form button:hover {
-            background-color: #444;
+        .quantity-controls button:hover {
+            background-color: #333;
         }
 
-        /* Mobile responsiveness */
-        @media screen and (max-width: 900px) {
-            .container {
-                padding: 15px;
-                margin: 0;
-            }
-
-            h1, h2, p, .cocktailItem {
-                text-align: center;
-            }
-
-            .cocktail-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-
-            .cocktailItem img {
-                width: 100%;
-                height: auto;
-            }
-
-            #cart-sidebar {
-                width: 100%;
-                height: auto;
-            }
-
-            button {
-                font-size: 18px;
-                padding: 15px;
-                width: 100%;
-            }
-
-            #contact-form {
-                width: 100%;
-                padding: 15px;
-            }
-
-            /* Show hamburger icon and hide nav links initially */
-            .menu-icon {
-                display: block;
-                color: white;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            /* Ensure nav links appear when toggled */
-            .nav-links.show {
-                display: flex;
-                flex-direction: column;
-                background-color: #111;
-                position: absolute;
-                width: 100%;
-                top: 50px;
-                left: 0;
-            }
-
-            .nav-links.show li {
-                border-bottom: 1px solid #333;
-            }
-
-            .nav-links.show a {
-                padding: 15px;
-            }
-        }
-
-        /* Anchor link scroll offset fix for top bar */
-        :target::before {
-            content: "";
-            display: block;
-            height: 80px;
-            margin-top: -80px;
+        .cart-item p {
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -357,7 +229,6 @@
         <div class="logo">
             <img src="./images/Logo (2).png" alt="Company Logo">
         </div>
-        <span class="menu-icon" onclick="toggleMenu()">☰</span>
         <ul class="nav-links">
             <li><a href="#about">About Us</a></li>
             <li><a href="#order">Order</a></li>
@@ -370,12 +241,9 @@
     </nav>
 
     <div class="container">
-        <section id="about" style="text-align: left;">
+        <section id="about">
             <h1>About Us</h1>
-            <p>We are second-year students in the honors program at Afeka College of Engineering in Tel Aviv.<br>
-            Our team consists of Dotan Valano, Ohad Agam, Roy Dor, Nerya Mantzur, and Aviv Bachana.</p>
-            <p>Over the past year, Israel has been under attack, leading to the evacuation of many citizens from their homes. As a group, we decided to brainstorm technological ideas that could assist those returning to their homes in community centers—ideas that would enhance social experiences and help rebuild communities.</p>
-            <p>Our group chose to create a cocktail machine that would be installed in these community centers. This machine automatically prepares cocktails, from receiving the order to serving the drink, aiming to bring people together and foster a sense of community.</p>
+            <p>We are second-year students in the honors program at Afeka College of Engineering in Tel Aviv.</p>
         </section>
 
         <section id="order">
@@ -385,85 +253,42 @@
                     <h2>Margarita</h2>
                     <img src="./images/margarita.jpg" alt="Margarita" />
                     <p>Price: $10</p>
-                    <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Martini</h2>
                     <img src="./images/martini.jpg" alt="Martini" />
                     <p>Price: $12</p>
-                    <input type="number" id="martini-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Martini', document.getElementById('martini-quantity').value, 12)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="martini-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Martini', document.getElementById('martini-quantity').value, 12)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Bloody Mary</h2>
                     <img src="./images/bloodyMary.jpg" alt="Bloody Mary" />
                     <p>Price: $11</p>
-                    <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Pina Colada</h2>
                     <img src="./images/pinaColada.avif" alt="Pina Colada" />
                     <p>Price: $13</p>
-                    <input type="number" id="pinaColada-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Pina Colada', document.getElementById('pinaColada-quantity').value, 13)">Add to Cart</button>
-                </div>
-
-                <div class="cocktailItem">
-                    <h2>DIY</h2>
-                    <img src="./images/diy.jpg" alt="DIY" />
-                    <p>Price: $15</p>
-                    <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="pinaColada-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Pina Colada', document.getElementById('pinaColada-quantity').value, 13)">Add to Cart</button>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section id="faq" style="text-align: left;">
-            <h1>FAQ</h1>
-            <div class="faq-item">
-                <h2>What was the inspiration behind your project?</h2>
-                <p>As evacuees return to their homes, we want them to be able to rebuild their communities, connect, and enjoy the simple things in life again. Alcohol is a significant social focus for many people, and it can help achieve just that.</p>
-            </div>
-            <div class="faq-item">
-                <h2>How does your cocktail machine work?</h2>
-                <p>The cocktail machine operates using a barcode scan that directs the user to our website. On the website, users can order a variety of pre-made cocktails or create a custom drink. The website sends the command to the machine, which is powered by an Arduino. The Arduino sends the command to the valves, which open the drink containers, thus assembling the drink.</p>
-            </div>
-            <div class="faq-item">
-                <h2>What technologies did you use to build the machine?</h2>
-                <p>The machine is powered by an Arduino that controls the valves opening the drink containers. The commands are sent via our website after users scan a barcode or place an order directly.</p>
-            </div>
-            <div class="faq-item">
-                <h2>Who is this cocktail machine intended for?</h2>
-                <p>This machine is for anyone who loves technology, simplicity, speed, and, of course, alcohol.</p>
-            </div>
-            <div class="faq-item">
-                <h2>What challenges did you encounter during development?</h2>
-                <p>One of the significant challenges was integrating an ice machine into the system. Currently, our machine does not support ice shaking, but a future version of the machine will include this feature.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h1>Contact Us</h1>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit">Send</button>
-            </form>
         </section>
     </div>
 
@@ -471,27 +296,95 @@
         <h2>Your Cart</h2>
         <button onclick="toggleCart()">✖</button>
         <div id="cart-content">
-            <!-- Cart items will be displayed here -->
+            <!-- Cart items will be dynamically inserted here -->
         </div>
         <p>Total: $<span id="total-price">0</span></p>
         <button onclick="placeOrder()">Place Order</button>
     </div>
 
     <script>
-        const esp32_ip = 'http://192.168.1.178';
-
         let cart = [];
 
         function addToCart(drink, quantity, price) {
             quantity = parseInt(quantity);
             if (quantity > 0) {
-                cart.push({ drink, quantity, price });
+                let itemInCart = cart.find(item => item.drink === drink);
+                if (itemInCart) {
+                    itemInCart.quantity += quantity;  // Increase quantity if already in cart
+                } else {
+                    cart.push({ drink, quantity, price });  // Add new item to cart
+                }
                 updateCartDisplay();
                 updateCartCount();
-                alert(${quantity} ${drink}(s) added to cart);
+                alert(`${quantity} ${drink}(s) added to cart`);
             } else {
                 alert("Please select a valid quantity.");
             }
+        }
+
+        function updateCartDisplay() {
+            let cartContent = document.getElementById('cart-content');
+            let totalPrice = 0;
+            cartContent.innerHTML = '';  // Clear current content
+
+            cart.forEach((item, index) => {
+                totalPrice += item.price * item.quantity;
+
+                let cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+
+                let cartImage = document.createElement('img');
+                cartImage.src = getImageForDrink(item.drink);
+                cartImage.alt = item.drink;
+                cartImage.className = 'cart-item-image';
+
+                let cartText = document.createElement('p');
+                cartText.textContent = `${item.quantity} x ${item.drink} ($${item.price} each)`;
+
+                let decreaseButton = document.createElement('button');
+                decreaseButton.textContent = '-';
+                decreaseButton.onclick = () => {
+                    decreaseQuantity(index);
+                };
+
+                let increaseButton = document.createElement('button');
+                increaseButton.textContent = '+';
+                increaseButton.onclick = () => {
+                    increaseQuantity(index);
+                };
+
+                let quantityControls = document.createElement('div');
+                quantityControls.className = 'quantity-controls';
+                quantityControls.appendChild(decreaseButton);
+                quantityControls.appendChild(cartText);
+                quantityControls.appendChild(increaseButton);
+
+                cartItem.appendChild(cartImage);
+                cartItem.appendChild(quantityControls);
+                cartContent.appendChild(cartItem);
+            });
+
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        function increaseQuantity(index) {
+            cart[index].quantity++;
+            updateCartDisplay();
+            updateCartCount();
+        }
+
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+            } else {
+                cart.splice(index, 1);  // Remove item if quantity is 1 and decrease is clicked
+            }
+            updateCartDisplay();
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length;
         }
 
         function getImageForDrink(drink) {
@@ -504,60 +397,16 @@
                     return './images/bloodyMary.jpg';
                 case 'Pina Colada':
                     return './images/pinaColada.avif';
-                case 'DIY':
-                    return './images/diy.jpg';
                 default:
-                    return '';
+                    return './images/diy.jpg';
             }
-        }
-
-        function updateCartDisplay() {
-            let cartContent = document.getElementById('cart-content');
-            let totalPrice = 0;
-            cartContent.innerHTML = '';
-            cart.forEach(item => {
-                totalPrice += item.price * item.quantity;
-                let cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-
-                let cartImage = document.createElement('img');
-                cartImage.src = getImageForDrink(item.drink);
-                cartImage.alt = item.drink;
-                cartImage.className = 'cart-item-image';
-
-                let cartText = document.createElement('p');
-                cartText.textContent = ${item.quantity} x ${item.drink} ($${item.price} each);
-
-                cartItem.appendChild(cartImage);
-                cartItem.appendChild(cartText);
-                cartContent.appendChild(cartItem);
-            });
-            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
-        }
-
-        function updateCartCount() {
-            document.getElementById('cart-count').textContent = cart.length;
-        }
-
-        function placeOrder() {
-            console.log("Order placed:", cart);
-            alert("Order placed!");
-            cart = [];
-            updateCartDisplay();
-            updateCartCount();
         }
 
         function toggleCart() {
             const cartSidebar = document.getElementById('cart-sidebar');
             cartSidebar.classList.toggle('open');
         }
-
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.classList.toggle('show');
-        }
     </script>
-
 </body>
 
 </html>
