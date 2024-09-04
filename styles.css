@@ -314,3 +314,16 @@ button:hover {
   height: 80px;
   margin-top: -80px;
 }
+
+.cocktail-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Add margin if needed */
+}
+
+.cocktailItem input {
+    margin-left: 10px;
+    text-align: center;
+}
+
