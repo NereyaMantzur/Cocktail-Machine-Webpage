@@ -140,7 +140,7 @@
             margin-top: 20px;
             padding: 15px;
         }
-
+        
         .cocktailItem {
             font-size: larger;
             text-align: center;
@@ -148,31 +148,53 @@
             border-radius: 15px;
             background-color: #333;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;  /* Ensure each item takes up the same vertical space */
         }
-
+        
         .cocktailItem h2 {
             font-family: 'Merriweather', serif;
+            margin-bottom: 10px;  /* Ensures consistent spacing */
         }
-
+        
         .cocktailItem img {
             width: 100%;
             height: auto;
             object-fit: cover;
             border-radius: 15px;
+            margin-bottom: 10px; /* Ensures consistent spacing */
         }
-    
-         button {
-        background-color: #000;
-        color: #fff;
-        border: 1px solid #fff;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;  /* Makes the cursor change to a pointer (hand) */
+        
+        .action-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;  /* Pushes the button/input to the bottom of each item */
         }
-
+        
+        .action-container input {
+            width: 50px;
+            text-align: center;
+            padding: 5px;
+        }
+        
+        button {
+            background-color: #000;
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+        }
+        
         button:hover {
             background-color: #333;
         }
+
 
         /* Cart Sidebar */
         #cart-sidebar {
