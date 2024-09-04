@@ -123,10 +123,10 @@ button:hover {
   right: 0;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .container {
       width: 100%;
-      padding: 10px;
+      padding: 15px;
   }
 
   .cocktailItem {
@@ -136,6 +136,7 @@ button:hover {
 
   .cocktail-grid {
       grid-template-columns: 1fr;
+       gap: 10px;
   }
 
   #cart-sidebar {
