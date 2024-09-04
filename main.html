@@ -30,9 +30,11 @@
             display: flex;
             justify-content: space-between;
             padding: 10px;
-            position: sticky;
+            position: fixed; /* Fixes the top bar at the top of the screen */
             top: 0;
-            z-index: 1000;
+            left: 0;
+            width: 100%; /* Ensures the top bar takes the full width */
+            z-index: 1000; /* Makes sure it stays above other elements */
         }
 
         .logo img {
@@ -74,7 +76,7 @@
 
         .container {
             max-width: 100%;
-            margin-top: 20px;
+            margin-top: 80px; /* Added margin to avoid content being hidden behind the fixed top bar */
             text-align: center;
             background-color: #111;
             padding-bottom: 30px;
@@ -130,8 +132,9 @@
             background-color: #333;
         }
 
+        /* Cart Sidebar */
         #cart-sidebar {
-            position: fixed;
+            position: fixed; /* Fixed position so it's always visible */
             top: 0;
             right: -300px;
             width: 300px;
@@ -144,7 +147,7 @@
         }
 
         #cart-sidebar.open {
-            right: 0;
+            right: 0; /* Slides in when opened */
         }
 
         /* Cart item styles */
@@ -230,7 +233,7 @@
             }
 
             #cart-sidebar {
-                width: 100%;
+                width: 100%; /* Make the cart take up the full width on mobile */
                 height: auto;
             }
 
