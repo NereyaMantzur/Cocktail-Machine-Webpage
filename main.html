@@ -13,15 +13,20 @@
         body {
             overflow-x: hidden;
             text-align: center;
-            font-family: 'Roboto', sans-serif; /* Updated font */
+            font-family: 'Roboto', sans-serif; /* Default sans-serif font */
             margin: 0;
             padding: 0;
             background-color: #000;
             color: #fff;
         }
 
+        /* Serif font for top bar, titles, and cocktail names */
+        .top-bar, h1, h2, .cocktailItem h2 {
+            font-family: 'Times New Roman', Times, serif; /* Serif font */
+        }
+
         h1, h2 {
-            font-family: 'Poppins', sans-serif; /* Modern font for headings */
+            font-family: 'Poppins', sans-serif; /* This will be overridden by the serif font */
         }
 
         .top-bar {
@@ -58,7 +63,7 @@
             padding: 10px 15px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
-            font-family: 'Roboto', sans-serif; /* Updated font */
+            font-family: 'Times New Roman', Times, serif; /* Serif font */
         }
 
         .nav-links a:hover {
@@ -68,7 +73,7 @@
         .cart-icon {
             cursor: pointer;
             color: #fff;
-            font-family: 'Roboto', sans-serif; /* Updated font */
+            font-family: 'Roboto', sans-serif;
         }
 
         .container {
@@ -104,6 +109,10 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
 
+        .cocktailItem h2 {
+            font-family: 'Times New Roman', Times, serif; /* Serif font for cocktail names */
+        }
+
         .cocktailItem img {
             width: 100%;
             height: 150px;
@@ -118,7 +127,7 @@
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
-            font-family: 'Roboto', sans-serif; /* Updated font */
+            font-family: 'Roboto', sans-serif; /* Sans-serif font for buttons */
         }
 
         button:hover {
@@ -275,174 +284,4 @@
                     <h2>Margarita</h2>
                     <img src="./images/margarita.jpg" alt="Margarita" />
                     <p>Price: $10</p>
-                    <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
-                </div>
-
-                <div class="cocktailItem">
-                    <h2>Martini</h2>
-                    <img src="./images/martini.jpg" alt="Martini" />
-                    <p>Price: $12</p>
-                    <input type="number" id="martini-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Martini', document.getElementById('martini-quantity').value, 12)">Add to Cart</button>
-                </div>
-
-                <div class="cocktailItem">
-                    <h2>Bloody Mary</h2>
-                    <img src="./images/bloodyMary.jpg" alt="Bloody Mary" />
-                    <p>Price: $11</p>
-                    <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add to Cart</button>
-                </div>
-
-                <div class="cocktailItem">
-                    <h2>Pina Colada</h2>
-                    <img src="./images/pinaColada.avif" alt="Pina Colada" />
-                    <p>Price: $13</p>
-                    <input type="number" id="pinaColada-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Pina Colada', document.getElementById('pinaColada-quantity').value, 13)">Add to Cart</button>
-                </div>
-
-                <div class="cocktailItem">
-                    <h2>DIY</h2>
-                    <img src="./images/diy.jpg" alt="DIY" />
-                    <p>Price: $15</p>
-                    <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to Cart</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" style="text-align: left;">
-            <h1>FAQ</h1>
-            <div class="faq-item">
-                <h2>What was the inspiration behind your project?</h2>
-                <p>As evacuees return to their homes, we want them to be able to rebuild their communities, connect, and enjoy the simple things in life again. Alcohol is a significant social focus for many people, and it can help achieve just that.</p>
-            </div>
-            <div class="faq-item">
-                <h2>How does your cocktail machine work?</h2>
-                <p>The cocktail machine operates using a barcode scan that directs the user to our website. On the website, users can order a variety of pre-made cocktails or create a custom drink. The website sends the command to the machine, which is powered by an Arduino. The Arduino sends the command to the valves, which open the drink containers, thus assembling the drink.</p>
-            </div>
-            <div class="faq-item">
-                <h2>What technologies did you use to build the machine?</h2>
-                <p>The machine is powered by an Arduino that controls the valves opening the drink containers. The commands are sent via our website after users scan a barcode or place an order directly.</p>
-            </div>
-            <div class="faq-item">
-                <h2>Who is this cocktail machine intended for?</h2>
-                <p>This machine is for anyone who loves technology, simplicity, speed, and, of course, alcohol.</p>
-            </div>
-            <div class="faq-item">
-                <h2>What challenges did you encounter during development?</h2>
-                <p>One of the significant challenges was integrating an ice machine into the system. Currently, our machine does not support ice shaking, but a future version of the machine will include this feature.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h1>Contact Us</h1>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </div>
-
-    <div id="cart-sidebar">
-        <h2>Your Cart</h2>
-        <button onclick="toggleCart()">✖</button>
-        <div id="cart-content">
-            <!-- Cart items will be displayed here -->
-        </div>
-        <p>Total: $<span id="total-price">0</span></p>
-        <button onclick="placeOrder()">Place Order</button>
-    </div>
-
-    <script>
-        const esp32_ip = 'http://192.168.1.178';
-
-        let cart = [];
-
-        function addToCart(drink, quantity, price) {
-            quantity = parseInt(quantity);
-            if (quantity > 0) {
-                cart.push({ drink, quantity, price });
-                updateCartDisplay();
-                updateCartCount();
-                alert(`${quantity} ${drink}(s) added to cart`);
-            } else {
-                alert("Please select a valid quantity.");
-            }
-        }
-
-        function getImageForDrink(drink) {
-            switch (drink) {
-                case 'Margarita':
-                    return './images/margarita.jpg';
-                case 'Martini':
-                    return './images/martini.jpg';
-                case 'Bloody Mary':
-                    return './images/bloodyMary.jpg';
-                case 'Pina Colada':
-                    return './images/pinaColada.avif';
-                case 'DIY':
-                    return './images/diy.jpg';
-                default:
-                    return '';
-            }
-        }
-
-        function updateCartDisplay() {
-            let cartContent = document.getElementById('cart-content');
-            let totalPrice = 0;
-            cartContent.innerHTML = '';
-            cart.forEach(item => {
-                totalPrice += item.price * item.quantity;
-                let cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-
-                let cartImage = document.createElement('img');
-                cartImage.src = getImageForDrink(item.drink);
-                cartImage.alt = item.drink;
-                cartImage.className = 'cart-item-image';
-
-                let cartText = document.createElement('p');
-                cartText.textContent = `${item.quantity} x ${item.drink} ($${item.price} each)`;
-
-                cartItem.appendChild(cartImage);
-                cartItem.appendChild(cartText);
-                cartContent.appendChild(cartItem);
-            });
-            document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Update total price
-        }
-
-        function updateCartCount() {
-            document.getElementById('cart-count').textContent = cart.length;
-        }
-
-        function placeOrder() {
-            console.log("Order placed:", cart);
-            alert("Order placed!");
-            cart = []; // Clear cart after placing order
-            updateCartDisplay();
-            updateCartCount();
-        }
-
-        function toggleCart() {
-            const cartSidebar = document.getElementById('cart-sidebar');
-            cartSidebar.classList.toggle('open');
-        }
-    </script>
-
-</body>
-
-</html>
+                    <input
