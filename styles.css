@@ -70,6 +70,8 @@ body {
   color: #fff;
   font-family: 'Merriweather', serif;
   z-index: 1002;
+  padding-right: 40px; /* Add padding to avoid cutoff */
+
 }
 
 /* Hamburger menu for mobile */
