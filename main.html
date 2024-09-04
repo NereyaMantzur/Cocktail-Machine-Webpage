@@ -359,14 +359,16 @@
 
         <section id="order">
             <h1>Order Your Cocktail</h1>
-            <div class="cocktail-grid" id="cocktailItem">
-                <div class="cocktailItem">
-                    <h2>Margarita</h2>
-                    <img src="./images/margarita.jpg" alt="Margarita" />
+            <div class="cocktailItem">
+                <h2>Margarita</h2>
+                <img src="./images/margarita.jpg" alt="Margarita" />
+                <div class="cocktail-details">
                     <p>Price: $10</p>
                     <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
                 </div>
+                <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
+            </div>
+
 
                 <div class="cocktailItem">
                     <h2>Martini</h2>
@@ -383,6 +385,7 @@
                     <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
                     <button onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add to Cart</button>
                 </div>
+                
 
                 <div class="cocktailItem">
                     <h2>Pina Colada</h2>
