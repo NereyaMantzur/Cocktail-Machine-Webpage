@@ -30,7 +30,7 @@
             background-color: #111;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
+            padding: 5px;
             position: fixed;
             top: 0;
             left: 0;
@@ -80,6 +80,7 @@
             color: #fff;
             font-family: 'Merriweather', serif;
             z-index: 1002;
+            padding-right: 40px;
         }
 
         /* Hamburger menu for mobile */
@@ -88,7 +89,7 @@
             font-size: 24px;
             cursor: pointer;
             z-index: 1002;
-            margin-right: 15px; /* Add margin for spacing between icons */
+            margin-right: 15px;
         }
 
         .nav-links.mobile {
@@ -116,8 +117,8 @@
         /* Ensure margin below top bar */
         .container {
             max-width: 100%;
-            margin-top: 100px; /* Increased margin to avoid being cut off by top bar */
-            padding: 20px; /* Added padding for left/right space */
+            margin-top: 100px;
+            padding: 40px;
             text-align: center;
             background-color: #111;
             padding-bottom: 30px;
@@ -159,6 +160,19 @@
             border-radius: 15px;
         }
 
+        .action-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .action-container input {
+            width: 50px;
+            text-align: center;
+        }
+
         button {
             background-color: #000;
             color: #fff;
@@ -177,8 +191,8 @@
         #cart-sidebar {
             position: fixed;
             top: 0;
-            right: -100%;
-            width: 300px;
+            right: -1000%;
+            width: 400px;
             height: 100%;
             background-color: #111;
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
@@ -208,7 +222,7 @@
 
         /* Contact Us form styling */
         #contact-form {
-            max-width: 700px;
+            max-width: 600px;
             margin: 0;
             padding: 20px;
             background-color: #222;
@@ -253,9 +267,9 @@
         }
 
         /* Mobile responsiveness */
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 900px) {
             .container {
-                padding: 20px;
+                padding: 15px;
                 margin: 0;
             }
 
@@ -289,7 +303,6 @@
                 padding: 15px;
             }
 
-            /* Show hamburger icon and hide nav links initially */
             .menu-icon {
                 display: block;
                 color: white;
@@ -299,7 +312,6 @@
                 display: none;
             }
 
-            /* Ensure nav links appear when toggled */
             .nav-links.show {
                 display: flex;
                 flex-direction: column;
@@ -317,14 +329,6 @@
             .nav-links.show a {
                 padding: 15px;
             }
-        }
-
-        /* Anchor link scroll offset fix for top bar */
-        :target::before {
-            content: "";
-            display: block;
-            height: 80px;
-            margin-top: -80px;
         }
     </style>
 </head>
@@ -350,7 +354,7 @@
         <section id="about" style="text-align: left;">
             <h1>About Us</h1>
             <p>We are second-year students in the honors program at Afeka College of Engineering in Tel Aviv.<br>
-            Our team consists of Dotan Valano, Ohad Agam, Roy Dor, Nerya Mantzur, and Aviv Bachana.</p>
+                Our team consists of Dotan Valano, Ohad Agam, Roy Dor, Nerya Mantzur, and Aviv Bachana.</p>
             <p>Over the past year, Israel has been under attack, leading to the evacuation of many citizens from their homes. As a group, we decided to brainstorm technological ideas that could assist those returning to their homes in community centers—ideas that would enhance social experiences and help rebuild communities.</p>
             <p>Our group chose to create a cocktail machine that would be installed in these community centers. This machine automatically prepares cocktails, from receiving the order to serving the drink, aiming to bring people together and foster a sense of community.</p>
         </section>
@@ -362,101 +366,56 @@
                     <h2>Margarita</h2>
                     <img src="./images/margarita.jpg" alt="Margarita" />
                     <p>Price: $10</p>
-                    <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="margarita-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Margarita', document.getElementById('margarita-quantity').value, 10)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Martini</h2>
                     <img src="./images/martini.jpg" alt="Martini" />
                     <p>Price: $12</p>
-                    <input type="number" id="martini-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Martini', document.getElementById('martini-quantity').value, 12)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="martini-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Martini', document.getElementById('martini-quantity').value, 12)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Bloody Mary</h2>
                     <img src="./images/bloodyMary.jpg" alt="Bloody Mary" />
                     <p>Price: $11</p>
-                    <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="bloodyMary-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Bloody Mary', document.getElementById('bloodyMary-quantity').value, 11)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Pina Colada</h2>
                     <img src="./images/pinaColada.avif" alt="Pina Colada" />
                     <p>Price: $13</p>
-                    <input type="number" id="pinaColada-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('Pina Colada', document.getElementById('pinaColada-quantity').value, 13)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="pinaColada-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('Pina Colada', document.getElementById('pinaColada-quantity').value, 13)">Add to Cart</button>
+                    </div>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>DIY</h2>
                     <img src="./images/diy.jpg" alt="DIY" />
                     <p>Price: $15</p>
-                    <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to Cart</button>
+                    <div class="action-container">
+                        <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
+                        <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to Cart</button>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <section id="faq" style="text-align: left;">
-            <h1>FAQ</h1>
-            <div class="faq-item">
-                <h2>What was the inspiration behind your project?</h2>
-                <p>As evacuees return to their homes, we want them to be able to rebuild their communities, connect, and enjoy the simple things in life again. Alcohol is a significant social focus for many people, and it can help achieve just that.</p>
-            </div>
-            <div class="faq-item">
-                <h2>How does your cocktail machine work?</h2>
-                <p>The cocktail machine operates using a barcode scan that directs the user to our website. On the website, users can order a variety of pre-made cocktails or create a custom drink. The website sends the command to the machine, which is powered by an Arduino. The Arduino sends the command to the valves, which open the drink containers, thus assembling the drink.</p>
-            </div>
-            <div class="faq-item">
-                <h2>What technologies did you use to build the machine?</h2>
-                <p>The machine is powered by an Arduino that controls the valves opening the drink containers. The commands are sent via our website after users scan a barcode or place an order directly.</p>
-            </div>
-            <div class="faq-item">
-                <h2>Who is this cocktail machine intended for?</h2>
-                <p>This machine is for anyone who loves technology, simplicity, speed, and, of course, alcohol.</p>
-            </div>
-            <div class="faq-item">
-                <h2>What challenges did you encounter during development?</h2>
-                <p>One of the significant challenges was integrating an ice machine into the system. Currently, our machine does not support ice shaking, but a future version of the machine will include this feature.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h1>Contact Us</h1>
-            <form id="contact-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone" required>
-
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="4" required></textarea>
-
-                <button type="submit">Send</button>
-            </form>
-        </section>
-    </div>
-
-    <div id="cart-sidebar">
-        <h2>Your Cart</h2>
-        <button onclick="toggleCart()">✖</button>
-        <div id="cart-content">
-            <!-- Cart items will be displayed here -->
-        </div>
-        <p>Total: $<span id="total-price">0</span></p>
-        <button onclick="placeOrder()">Place Order</button>
     </div>
 
     <script>
-        const esp32_ip = 'http://192.168.1.178';
-
         let cart = [];
 
         function addToCart(drink, quantity, price) {
@@ -514,14 +473,6 @@
 
         function updateCartCount() {
             document.getElementById('cart-count').textContent = cart.length;
-        }
-
-        function placeOrder() {
-            console.log("Order placed:", cart);
-            alert("Order placed!");
-            cart = [];
-            updateCartDisplay();
-            updateCartCount();
         }
 
         function toggleCart() {
