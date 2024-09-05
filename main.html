@@ -398,12 +398,71 @@
                     <h2>DIY</h2>
                     <img src="./images/diy.jpg" alt="DIY" />
                     <p>Price: $15</p>
-                    <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
-                    <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to Cart</button>
+                
+                    <!-- Dropdowns for selecting ingredients and amounts in the same line -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label for="ingredient1" style="flex: 1; font-size: 12px; text-align: left;">Ingredient 1:</label>
+                        <select id="ingredient1" class="ingredient-select" style="flex: 2; margin-right: 10px;">
+                            <option value="">Select an ingredient</option>
+                            <option value="jin">Jin</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="rum">Rum</option>
+                            <option value="whiskey">Whiskey</option>
+                            <option value="orange">Orange Juice</option>
+                            <option value="tonic">Tonic Water</option>
+                            <option value="coke">Coke</option>
+                        </select>
+                        <select id="amount1" style="flex: 1;">
+                            <option value="30">30 ml</option>
+                            <option value="60">60 ml</option>
+                            <option value="90">90 ml</option>
+                        </select>
+                    </div>
+                
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label for="ingredient2" style="flex: 1; font-size: 12px; text-align: left;">Ingredient 2:</label>
+                        <select id="ingredient2" class="ingredient-select" style="flex: 2; margin-right: 10px;">
+                            <option value="">Select an ingredient</option>
+                            <option value="jin">Jin</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="rum">Rum</option>
+                            <option value="whiskey">Whiskey</option>
+                            <option value="orange">Orange Juice</option>
+                            <option value="tonic">Tonic Water</option>
+                            <option value="coke">Coke</option>
+                        </select>
+                        <select id="amount2" style="flex: 1;">
+                            <option value="30">30 ml</option>
+                            <option value="60">60 ml</option>
+                            <option value="90">90 ml</option>
+                        </select>
+                    </div>
+                
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label for="ingredient3" style="flex: 1; font-size: 12px; text-align: left;">Ingredient 3:</label>
+                        <select id="ingredient3" class="ingredient-select" style="flex: 2; margin-right: 10px;">
+                            <option value="">Select an ingredient</option>
+                            <option value="jin">Jin</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="rum">Rum</option>
+                            <option value="whiskey">Whiskey</option>
+                            <option value="orange">Orange Juice</option>
+                            <option value="tonic">Tonic Water</option>
+                            <option value="coke">Coke</option>
+                        </select>
+                        <select id="amount3" style="flex: 1;">
+                            <option value="30">30 ml</option>
+                            <option value="60">60 ml</option>
+                            <option value="90">90 ml</option>
+                        </select>
+                    </div>
+                
+                    <button onclick="addDiyToCart()">Add DIY to Cart</button>
                 </div>
+                
+                
             </div>
-        </section>
-
+        <section>
         <section id="faq" style="text-align: left;">
             <h1>FAQ</h1>
             <div class="faq-item">
