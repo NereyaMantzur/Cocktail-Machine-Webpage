@@ -8,7 +8,7 @@ function addToCart(drink, quantity, price) {
         cart.push({ drink, quantity, price });
         updateCartDisplay();
         updateCartCount();
-        alert(${quantity} ${drink}(s) added to cart);
+        alert(`${quantity} ${drink}(s) added to cart`);
     } else {
         alert("Please select a valid quantity.");
     }
@@ -46,7 +46,7 @@ function updateCartDisplay() {
         cartImage.className = 'cart-item-image';
 
         let cartText = document.createElement('p');
-        cartText.textContent = ${item.quantity} x ${item.drink} ($${item.price} each);
+        cartText.textContent = `${item.quantity} x ${item.drink} ($${item.price} each)`;
 
         cartItem.appendChild(cartImage);
         cartItem.appendChild(cartText);
