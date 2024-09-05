@@ -30,7 +30,7 @@
             background-color: #111;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
+            padding: 5px;
             position: fixed;
             top: 0;
             left: 0;
@@ -116,8 +116,8 @@
         /* Ensure margin below top bar */
         .container {
             max-width: 100%;
-            margin-top: 100px; /* Increased margin to avoid being cut off by top bar */
-            padding: 20px; /* Added padding for left/right space */
+            margin-top: 100px;
+            padding: 40px;
             text-align: center;
             background-color: #111;
             padding-bottom: 30px;
@@ -177,8 +177,8 @@
         #cart-sidebar {
             position: fixed;
             top: 0;
-            right: -100%;
-            width: 300px;
+            right: -1000%;
+            width: 1000px;
             height: 100%;
             background-color: #111;
             box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
@@ -253,9 +253,9 @@
         }
 
         /* Mobile responsiveness */
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 900px) {
             .container {
-                padding: 20px;
+                padding: 15px;
                 margin: 0;
             }
 
@@ -465,7 +465,7 @@
                 cart.push({ drink, quantity, price });
                 updateCartDisplay();
                 updateCartCount();
-                alert(`${quantity} ${drink}(s) added to cart`);
+                alert(${quantity} ${drink}(s) added to cart);
             } else {
                 alert("Please select a valid quantity.");
             }
@@ -503,7 +503,7 @@
                 cartImage.className = 'cart-item-image';
 
                 let cartText = document.createElement('p');
-                cartText.textContent = `${item.quantity} x ${item.drink} ($${item.price} each)`;
+                cartText.textContent = ${item.quantity} x ${item.drink} ($${item.price} each);
 
                 cartItem.appendChild(cartImage);
                 cartItem.appendChild(cartText);
