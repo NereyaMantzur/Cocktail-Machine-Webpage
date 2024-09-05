@@ -1,4 +1,3 @@
-
 const esp32_ip = 'http://192.168.1.178';
 
 let cart = [];
