@@ -5,7 +5,13 @@ let cart = [];
 function addToCart(drink, quantity, price) {
     quantity = parseInt(quantity);
     if (quantity > 0) {
-        cart.push({ drink, quantity, price });
+        // Check if item already exists in the cart
+        const existingItem = cart.find(item => item.drink === drink);
+        if (existingItem) {
+            existingItem.quantity += quantity;  // Increase quantity if already in cart
+        } else {
+            cart.push({ drink, quantity, price });
+        }
         updateCartDisplay();
         updateCartCount();
         alert(`${quantity} ${drink}(s) added to cart`);
@@ -35,8 +41,9 @@ function updateCartDisplay() {
     let cartContent = document.getElementById('cart-content');
     let totalPrice = 0;
     cartContent.innerHTML = '';
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         totalPrice += item.price * item.quantity;
+        
         let cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
 
@@ -48,10 +55,33 @@ function updateCartDisplay() {
         let cartText = document.createElement('p');
         cartText.textContent = `${item.quantity} x ${item.drink} ($${item.price} each)`;
 
+        // Add buttons for increasing/decreasing/removing items
+        let decreaseBtn = document.createElement('button');
+        decreaseBtn.textContent = '-';
+        decreaseBtn.onclick = function() {
+            updateQuantity(index, -1);  // Decrease quantity
+        };
+
+        let increaseBtn = document.createElement('button');
+        increaseBtn.textContent = '+';
+        increaseBtn.onclick = function() {
+            updateQuantity(index, 1);  // Increase quantity
+        };
+
+        let deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Remove';
+        deleteBtn.onclick = function() {
+            deleteFromCart(index);  // Remove item
+        };
+
         cartItem.appendChild(cartImage);
         cartItem.appendChild(cartText);
+        cartItem.appendChild(decreaseBtn);
+        cartItem.appendChild(increaseBtn);
+        cartItem.appendChild(deleteBtn);
         cartContent.appendChild(cartItem);
     });
+
     document.getElementById('total-price').textContent = totalPrice.toFixed(2); // Update total price
 }
 
@@ -62,7 +92,7 @@ function updateCartCount() {
 function placeOrder() {
     console.log("Order placed:", cart);
     alert("Order placed!");
-    cart = []; // Clear cart after placing order
+    cart = [];  // Clear cart after placing order
     updateCartDisplay();
     updateCartCount();
 }
@@ -70,4 +100,20 @@ function placeOrder() {
 function toggleCart() {
     const cartSidebar = document.getElementById('cart-sidebar');
     cartSidebar.classList.toggle('open');
+}
+
+function updateQuantity(index, change) {
+    if (cart[index].quantity + change > 0) {
+        cart[index].quantity += change;
+    } else {
+        deleteFromCart(index);  // Remove item if quantity goes to 0
+    }
+    updateCartDisplay();
+    updateCartCount();
+}
+
+function deleteFromCart(index) {
+    cart.splice(index, 1);  // Remove the item from the cart
+    updateCartDisplay();
+    updateCartCount();
 }
