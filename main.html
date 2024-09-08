@@ -36,12 +36,18 @@
             background-color: #111;
             display: flex;
             justify-content: space-between;
-            padding: 10px;
-            position: fixed;
-            top: 0;
+            padding: 40px;
+            position: relative;
+            top: 20px;
             left: 0;
             width: 100%;
             z-index: 1000;
+            align-items: center;
+        }
+
+        .logo {
+            flex: 1;
+            text-align: left;
         }
 
         .logo img {
@@ -56,7 +62,12 @@
             align-items: center;
             flex-grow: 1;
             justify-content: flex-end;
+<<<<<<< HEAD
             /* Align the links to the right */
+=======
+            margin-top: 20px; /* Push the nav links down */
+
+>>>>>>> 4d915d44a73ff0760364aef8d0b57d0682f97ced
         }
 
         .nav-links li {
@@ -80,6 +91,8 @@
             cursor: pointer;
             color: #fff;
             font-family: 'Merriweather', serif;
+            z-index: 1002;
+            padding-right: 100px
         }
 
         /* Hamburger menu for mobile */
@@ -87,6 +100,9 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+            z-index: 1002;
+            margin-right: 20px; /* Add margin for spacing between icons */
+            
         }
 
         .nav-links.mobile {
@@ -114,7 +130,8 @@
         /* Ensure margin below top bar */
         .container {
             max-width: 100%;
-            margin-top: 80px;
+            margin-top: 100px; /* Increased margin to avoid being cut off by top bar */
+            padding: 20px; /* Added padding for left/right space */
             text-align: center;
             background-color: #111;
             padding-bottom: 30px;
@@ -130,19 +147,17 @@
 
         .cocktail-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
             margin-top: 20px;
-            padding: 15px;
+            padding: 5px;
         }
 
         .cocktailItem {
-            font-size: larger;
-            text-align: center;
-            padding: 10px;
-            border-radius: 15px;
+            padding:   5px;
             background-color: #333;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
         }
 
         .cocktailItem h2 {
@@ -160,9 +175,10 @@
             background-color: #000;
             color: #fff;
             border: 1px solid #fff;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 7px;
+            border-radius: 10px;
             cursor: pointer;
+            margin-bottom: 10px;
             font-family: 'Roboto', sans-serif;
         }
 
@@ -174,7 +190,7 @@
         #cart-sidebar {
             position: fixed;
             top: 0;
-            right: -300px;
+            right: -1000%;
             width: 300px;
             height: 100%;
             background-color: #111;
@@ -201,6 +217,20 @@
             object-fit: cover;
             border-radius: 5px;
             margin-right: 10px;
+        }
+
+        .cart-item button {
+            margin: 0 5px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .cart-item button:hover {
+            background-color: #555;
         }
 
         /* Contact Us form styling */
@@ -252,8 +282,9 @@
         /* Mobile responsiveness */
         @media screen and (max-width: 600px) {
             .container {
-                padding: 15px;
-                margin: 0;
+                padding: 20px;
+                margin-right: 15px;
+                text-align: center;
             }
 
             h1,
@@ -274,22 +305,21 @@
             }
 
             #cart-sidebar {
-                width: 100%;
+                width:85%;
                 height: auto;
             }
 
             button {
                 font-size: 18px;
                 padding: 15px;
-                width: 100%;
+                width: 60%;
             }
 
             #contact-form {
-                width: 100%;
                 padding: 15px;
+                margin-right: 15px;
             }
 
-            /* Show hamburger icon and hide nav links initially */
             .menu-icon {
                 display: block;
                 color: white;
@@ -299,14 +329,13 @@
                 display: none;
             }
 
-            /* Ensure nav links appear when toggled */
             .nav-links.show {
                 display: flex;
                 flex-direction: column;
                 background-color: #111;
                 position: absolute;
                 width: 100%;
-                top: 50px;
+                top: 70px;
                 left: 0;
             }
 
@@ -403,13 +432,78 @@
                 </div>
 
                 <div class="cocktailItem">
+                    <div class="cocktailItem" style="padding: 20px; background-color: #333; border-radius: 20px; box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);">
                     <h2>DIY</h2>
                     <img src="./images/diy.jpg" alt="DIY" />
                     <p>Price: $15</p>
+<<<<<<< HEAD
                     <input type="number" id="diy-quantity" name="quantity" min="1" max="10" value="1">
                     <button onclick="addToCart('DIY', document.getElementById('diy-quantity').value, 15)">Add to
                         Cart</button>
+=======
+                
+                    <!-- Dropdowns for selecting ingredients and amounts in the same line -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label for="ingredient1" style="flex: 1; font-size: 12px;">Ingredient 1:</label>
+                        <select id="ingredient1" class="ingredient-select" style="flex: 2; margin-right: 10px;">
+                            <option value="">Select an ingredient</option>
+                            <option value="jin">Jin</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="rum">Rum</option>
+                            <option value="whiskey">Whiskey</option>
+                            <option value="orange">Orange Juice</option>
+                            <option value="tonic">Tonic Water</option>
+                            <option value="coke">Coke</option>
+                        </select>
+                        <select id="amount1" style="flex: 1;">
+                            <option value="30">30 ml</option>
+                            <option value="60">60 ml</option>
+                            <option value="90">90 ml</option>
+                        </select>
+                    </div>
+                
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label for="ingredient2" style="flex: 1; font-size: 12px;">Ingredient 2:</label>
+                        <select id="ingredient2" class="ingredient-select" style="flex: 2; margin-right: 10px;">
+                            <option value="">Select an ingredient</option>
+                            <option value="jin">Jin</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="rum">Rum</option>
+                            <option value="whiskey">Whiskey</option>
+                            <option value="orange">Orange Juice</option>
+                            <option value="tonic">Tonic Water</option>
+                            <option value="coke">Coke</option>
+                        </select>
+                        <select id="amount2" style="flex: 1;">
+                            <option value="30">30 ml</option>
+                            <option value="60">60 ml</option>
+                            <option value="90">90 ml</option>
+                        </select>
+                    </div>
+                
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <label for="ingredient3" style="flex: 1; font-size: 12px;">Ingredient 3:</label>
+                        <select id="ingredient3" class="ingredient-select" style="flex: 2; margin-right: 10px;">
+                            <option value="">Select an ingredient</option>
+                            <option value="jin">Jin</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="rum">Rum</option>
+                            <option value="whiskey">Whiskey</option>
+                            <option value="orange">Orange Juice</option>
+                            <option value="tonic">Tonic Water</option>
+                            <option value="coke">Coke</option>
+                        </select>
+                        <select id="amount3" style="flex: 1;">
+                            <option value="30">30 ml</option>
+                            <option value="60">60 ml</option>
+                            <option value="90">90 ml</option>
+                        </select>
+                    </div>
+                
+                    <button onclick="addDiyToCart()">Add DIY to Cart</button>
+>>>>>>> 4d915d44a73ff0760364aef8d0b57d0682f97ced
                 </div>
+                    
             </div>
         </section>
 
@@ -475,6 +569,7 @@
         <button onclick="placeOrder()">Place Order</button>
     </div>
 
+<<<<<<< HEAD
     <script>
         const esp32_ip = 'http://192.168.1.176';
 
@@ -588,6 +683,9 @@
             navLinks.classList.toggle('show');
         }
     </script>
+=======
+    <script src="script.js"></script>
+>>>>>>> 4d915d44a73ff0760364aef8d0b57d0682f97ced
 
 </body>
 
