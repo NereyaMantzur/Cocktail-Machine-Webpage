@@ -14,7 +14,7 @@
     <div class="container">
         <nav class="menu-container">
             <!------ logo ------>
-            <a href="https://nereyamantzur.github.io/CocktailApp/MyFirstHtml.html" class="menu-logo">
+            <a href="https://nereyamantzur.github.io/CocktailApp/MyFirstHtml.html" class="logo">
                 <img src="./images/logo.png" alt="My Awesome Website" />
             </a>
         </nav>
@@ -34,6 +34,10 @@
                 </div>
             </div>
         </div>
+        <h1>ESP32 LED Control</h1>
+        <button onclick="turnOn()">Turn On</button>
+        <button onclick="turnOff()">Turn Off</button>
+        <p id="status"></p>
     </div>
     <h5>
         <footer>
@@ -41,7 +45,26 @@
         </footer>
     </h5>
 
-    <script src="script.js"></script>
+    <script> 
+    const esp32_ip = 'http://192.168.1.176';  // Replace with your ESP32's IP address
+
+        function turnOn() {
+            fetch(`${esp32_ip}/turn-on`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('status').innerText = "LED is ON";
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function turnOff() {
+            fetch(`${esp32_ip}/turn-off`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('status').innerText = "LED is OFF";
+                })
+                .catch(error => console.error('Error:', error));
+        }</script>
 </body>
 
 </html>
