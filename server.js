@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.post('/make_drink', (req, res) => {
     const fetch = require('node-fetch');
     const { drink, quantity } = req.body;
-    const esp32IP = 'http://192.168.1.178'; // Replace with your ESP32 IP address
+    const esp32IP = 'http://192.168.1.176'; // Replace with your ESP32 IP address
 
     fetch(`${esp32IP}/make_drink`, {
         method: 'POST',
