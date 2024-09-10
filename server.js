@@ -26,3 +26,16 @@ app.post('/make_drink', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
+
+// Middleware to parse JSON
+app.use(express.json());
+
+// Basic route to test
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
