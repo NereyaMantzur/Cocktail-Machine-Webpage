@@ -1,1 +1,1 @@
-https://nereyamantzur.github.io/cocktails/main.html
+https://nereyamantzur.github.io/cocktails/index.html
