@@ -1,7 +1,2 @@
-cocktail-control-server/
-
 commands
-certificate.crt
-private.key
 node_modules
-.env
