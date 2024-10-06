@@ -1,165 +1,141 @@
-#include <WiFi.h>        // For connecting ESP32 to WiFi
-#include <WebServer.h>   // ESP32 web server library
-#include <ArduinoOTA.h>  // For enabling over-the-air updates
-#include <ArduinoJson.h> // For parsing JSON data
+#include <ESP8266WiFi.h>
+#include <FirebaseESP8266.h>
 
-const char *ssid = "Uliel";
-const char *password = "0542400393";
+// Wi-Fi credentials
+const char *ssid = "Galaxy";
+const char *password = "1234567890";
 
-const int margarita = 18;  // LED for Margarita
-const int martini = 19;    // LED for Martini
-const int bloodyMary = 21; // LED for Bloody Mary
+// Firebase credentials
+#define FIREBASE_HOST "cocktails-6acf5-default-rtdb.asia-southeast1.firebasedatabase.app"
+#define FIREBASE_AUTH "yGh0ZdBDXb1uBhsjR8wIanhQyK1aV3FEqavakevp" // Firebase database secret token
 
-WebServer server(80); // Web server object for ESP32
+FirebaseData firebaseData;
+FirebaseConfig firebaseConfig;
+FirebaseAuth firebaseAuth;
+
+const int builtInLed = BUILTIN_LED; // GPIO for built-in LED or motor simulation
+
+// Function to connect to Wi-Fi
+void setupWiFi()
+{
+    Serial.print("Connecting to Wi-Fi");
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(1000);
+        Serial.print(".");
+    }
+    for (int counter = 0; counter < 10; counter++)
+    {
+        digitalWrite(builtInLed, HIGH);
+        delay(100); // Wait for 200 millisecond(s)
+        digitalWrite(builtInLed, LOW);
+        delay(100); // Wait for 200 millisecond(s)
+    }
+    digitalWrite(builtInLed, LOW);
+    Serial.println("Connected to Wi-Fi!");
+}
+
+void blinkLED(int numBlinks)
+{
+    for (int i = 0; i < numBlinks; i++)
+    {
+        digitalWrite(builtInLed, HIGH); // Turn the LED on
+        delay(500);                     // Wait for half a second
+        digitalWrite(builtInLed, LOW);  // Turn the LED off
+        delay(500);                     // Wait for half a second
+    }
+}
+
+// Function to prepare cocktails
+void prepareCocktail(const String &drink, int quantity)
+{
+    Serial.println("Preparing " + drink);
+
+    if (drink == "Margarita")
+    {
+        // Margarita preparation code
+        blinkLED(2);
+    }
+    else if (drink == "Martini")
+    {
+        // Martini preparation code
+        blinkLED(4);
+    }
+    else if (drink == "Bloody Mary")
+    {
+        // Bloody Mary preparation code
+        blinkLED(6);
+    }
+    else if (drink == "Pina Colada")
+    {
+        // Pina Colada preparation code
+        blinkLED(8);
+    }
+    else if (drink == "DIY")
+    {
+        // DIY (custom) drink preparation code
+        blinkLED(10);
+    }
+    else
+    {
+        Serial.println("Unknown drink!");
+    }
+
+    Serial.printf("%s prepared!\n", drink.c_str());
+}
 
 void setup()
 {
-    pinMode(margarita, OUTPUT);
-    digitalWrite(margarita, LOW); // Ensure LED is initially off
-    pinMode(martini, OUTPUT);
-    digitalWrite(martini, LOW); // Ensure LED is initially off
-    pinMode(bloodyMary, OUTPUT);
-    digitalWrite(bloodyMary, LOW); // Ensure LED is initially off
+    pinMode(builtInLed, OUTPUT); // Set motor pin as output
+    digitalWrite(builtInLed, LOW);
 
     Serial.begin(115200);
-    delay(10);
+    setupWiFi(); // Connect to Wi-Fi
 
-    WiFi.begin(ssid, password);
-    Serial.print("Connecting to WiFi");
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(500);
-        Serial.print(".");
-    }
-    Serial.println("\nWiFi connected");
-    Serial.print("IP address: ");
-    Serial.println(WiFi.localIP());
+    // Configure Firebase
+    firebaseConfig.database_url = FIREBASE_HOST;
+    firebaseConfig.signer.tokens.legacy_token = FIREBASE_AUTH; // Set Firebase Auth token
 
-    ArduinoOTA.begin(); // Starts OTA
+    // Initialize Firebase with both config and auth
+    Firebase.begin(&firebaseConfig, &firebaseAuth);
+    Firebase.reconnectWiFi(true); // Automatically reconnect to Wi-Fi if disconnected
 
-    server.on("/make_drink", HTTP_POST, handleMakeDrink);
-    server.on("/turn-off", HTTP_GET, handleOff);
-    server.on("/turn-on", HTTP_GET, handleOn);
-
-    // Handle preflight (OPTIONS) requests
-    server.onNotFound([]()
-                      {
-    if (server.method() == HTTP_OPTIONS) {
-      handlePreflight();
-    } else {
-      server.send(404, "text/plain", "Not Found");
-    } });
-
-    server.begin();
-    Serial.println("HTTP server started");
+    Serial.println("Firebase setup complete.");
 }
 
 void loop()
 {
-    server.handleClient();
-    ArduinoOTA.handle(); // Handle OTA updates
-}
-
-void handleMakeDrink()
-{
-    if (server.hasArg("plain") == false)
+    // Check if the order status is 'pending'
+    if (Firebase.getString(firebaseData, "/orderStatus"))
     {
-        server.send(400, "text/plain", "Bad Request");
-        return;
-    }
-
-    String body = server.arg("plain");
-    Serial.println("Received Data: " + body); // Debugging line to check received data
-
-    DynamicJsonDocument doc(1024);
-    DeserializationError error = deserializeJson(doc, body);
-
-    if (error)
-    {
-        Serial.print("JSON Deserialization failed: ");
-        Serial.println(error.c_str());
-        server.send(400, "text/plain", "Bad JSON format");
-        return;
-    }
-
-    JsonArray orders = doc.as<JsonArray>();
-
-    // Turn off all LEDs first
-    digitalWrite(margarita, LOW);
-    digitalWrite(martini, LOW);
-    digitalWrite(bloodyMary, LOW);
-
-    for (JsonObject order : orders)
-    {
-        String drink = order["drink"];
-        int quantity = order["quantity"];
-
-        Serial.println("Now making " + drink + " x " + String(quantity)); // Debugging line
-
-        if (drink == "Margarita")
+        String orderStatus = firebaseData.stringData();
+        if (orderStatus == "pending")
         {
-            makeMargarita();
-        }
-        else if (drink == "Martini")
-        {
-            digitalWrite(martini, HIGH); // Turn on LED for Martini
-            delay(1000);
-            digitalWrite(martini, LOW);
-        }
-        else if (drink == "Bloody Mary")
-        {
-            digitalWrite(bloodyMary, HIGH); // Turn on LED for Bloody Mary
-            delay(1000);
-            digitalWrite(bloodyMary, LOW);
+            // Fetch the cocktail name
+            if (Firebase.getString(firebaseData, "/cocktailName"))
+            {
+                String cocktail = firebaseData.stringData();
+                Serial.println("Order received, preparing " + cocktail);
+
+                prepareCocktail(cocktail, 1); // Modify the quantity as needed
+
+                // After preparing, update Firebase to mark the order as "complete"
+                Firebase.setString(firebaseData, "/orderStatus", "complete");
+                Serial.println("Order completed and status updated to 'complete'.");
+            }
+            else
+            {
+                Serial.println("Failed to retrieve cocktail name");
+                Serial.println("Error: " + firebaseData.errorReason()); // Print error if cocktailName fails
+            }
         }
     }
-
-    // Send CORS headers
-    server.sendHeader("Access-Control-Allow-Origin", "*");
-    server.sendHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-    server.send(200, "application/json", "{\"status\":\"success\"}");
-}
-
-void makeMargarita()
-{
-    for (int i = 0; i < 5; i++)
+    else
     {
-        digitalWrite(margarita, HIGH); // Turn on LED for Margarita
-        delay(500);
-        digitalWrite(margarita, LOW);
-        delay(500);
+        Serial.println("Failed to retrieve order status");
+        Serial.println("Error: " + firebaseData.errorReason()); // Print error reason for orderStatus failure
     }
-}
 
-void handleOff()
-{
-    digitalWrite(margarita, LOW);
-    digitalWrite(martini, LOW);
-    digitalWrite(bloodyMary, LOW);
-
-    // Send CORS headers
-    server.sendHeader("Access-Control-Allow-Origin", "*");
-    server.sendHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-    server.send(200, "text/plain", "All LEDs are OFF");
-}
-
-void handleOn()
-{
-    digitalWrite(margarita, HIGH);
-    digitalWrite(martini, HIGH);
-    digitalWrite(bloodyMary, HIGH);
-
-    // Send CORS headers
-    server.sendHeader("Access-Control-Allow-Origin", "*");
-    server.sendHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-    server.send(200, "text/plain", "All LEDs are On");
-}
-
-void handlePreflight()
-{
-    // Send CORS headers
-    server.sendHeader("Access-Control-Allow-Origin", "*");
-    server.sendHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
-    server.sendHeader("Access-Control-Allow-Headers", "Content-Type");
-    server.send(204); // No content for OPTIONS requests
+    delay(500); // Delay for the next check
 }
