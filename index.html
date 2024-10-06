@@ -210,7 +210,15 @@
         .cart-item {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            /* Vertically center content */
+            justify-content: center;
+            /* Horizontally center content */
+            margin: 0 auto;
+            /* Center the cart item box itself */
+            width: auto;
+            /* Let the width adjust to content */
+            padding: 10px;
+            /* Add some padding for spacing */
         }
 
         .cart-item-image {
@@ -261,9 +269,7 @@
             margin-bottom: 5px;
             color: #fff;
             width: 80%;
-            /* Full width for labels */
             text-align: left;
-            /* Align label text to the left */
         }
 
         #contact-form input,
@@ -282,9 +288,7 @@
 
         #contact-form textarea {
             resize: vertical;
-            /* Allow vertical resizing only */
             min-height: 100px;
-            /* Set a minimum height for the textarea */
         }
 
         #contact-form button {
@@ -319,7 +323,6 @@
             .container {
                 padding: 20px;
                 margin-right: 0;
-                /* Center the container */
             }
 
             h1,
@@ -335,7 +338,7 @@
             }
 
             .cocktailItem img {
-                width: 90%;
+                width: 100%;
                 height: auto;
             }
 
@@ -385,6 +388,10 @@
             height: 80px;
             margin-top: -80px;
         }
+
+        .cart-content {
+            flex-direction: column;
+        }
     </style>
 
 
@@ -406,7 +413,7 @@
         </div>
     </nav>
 
-    <div class="container" id="main-container" onclick="toggleCart()">
+    <div class="container" id="main-container">
         <section id="about" style="text-align: left;">
             <h1>About Us</h1>
             <p>We are second-year students in the honors program at Afeka College of Engineering in Tel Aviv.<br>
@@ -441,7 +448,7 @@
 
                 <div class="cocktailItem">
                     <h2>Bloody Mary</h2>
-                    <img src="./images/bloodyMary.jpg" alt="Bloody Mary" />
+                    <img src="./images/bloody mary.jpg" alt="Bloody Mary" />
                     <p>Price: $11</p>
                     <button onclick="addToCart('Bloody Mary', 1, 11)">Add
                         to Cart</button>
@@ -449,7 +456,7 @@
 
                 <div class="cocktailItem">
                     <h2>Pina Colada</h2>
-                    <img src="./images/pinaColada.avif" alt="Pina Colada" />
+                    <img src="./images/pina colada.jpg" alt="Pina Colada" />
                     <p>Price: $13</p>
                     <button onclick="addToCart('Pina Colada',1, 13)">Add
                         to Cart</button>
@@ -590,6 +597,7 @@
         <button onclick="placeOrder()">Place Order</button>
     </div>
 
+
     <script type="module" defer>
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
         import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
@@ -612,9 +620,9 @@
         let currentOrderStatus = 'complete'; // Initial order status
 
         // Function to toggle mobile menu
-        window.toggleMenu = function () { // Make it available globally
+        window.toggleMenu = function () {
             const navLinks = document.querySelector('.nav-links.mobile');
-            navLinks.classList.toggle('show'); // Toggle the 'show' class
+            navLinks.classList.toggle('show');
         };
 
         // Add cocktail to cart
@@ -622,8 +630,11 @@
             quantity = parseInt(quantity);
             if (quantity > 0) {
                 if (currentOrderStatus === 'complete') {
-                    // Allow only one cocktail in the cart
-                    cart = { drink, quantity, price };
+                    // Dynamically generate the image URL based on the drink name
+                    const image = `images/${drink.toLowerCase()}.jpg`;
+
+                    // Store drink, quantity, price, and image in the cart
+                    cart = { drink, quantity, price, image };
                     updateCartDisplay();
                     alert(`${quantity} ${drink}(s) added to cart`);
                 } else {
@@ -646,11 +657,10 @@
                 try {
                     await set(ref(database, 'cocktailName'), cart.drink);
                     await set(ref(database, 'orderStatus'), "pending");
-                    currentOrderStatus = "pending"; // Update local variable
+                    currentOrderStatus = "pending";
                     alert("Order placed successfully!");
 
-                    // Clear the cart after placing the order
-                    cart = {};
+                    cart = {}; // Clear cart
                     updateCartDisplay();
                 } catch (error) {
                     console.error("Error sending data to Firebase:", error);
@@ -678,36 +688,33 @@
 
             if (cart.drink) {
                 totalPrice += cart.price * cart.quantity;
+
+                // Create cart item container
                 const cartItem = document.createElement('div');
                 cartItem.className = 'cart-item';
 
-                const cartText = document.createElement('p');
-                cartText.textContent = `${cart.drink} ($${cart.price} each)`;
+                // Create image element for cocktail
+                const cartImage = document.createElement('img');
+                cartImage.src = cart.image || 'images/default.png'; // Fallback to a default image if image is missing
+                cartImage.alt = `${cart.drink} image`;
+                cartImage.className = 'cart-item-image';
 
+                // Create text element for cocktail name and price
+                const cartText = document.createElement('p');
+                cartText.textContent = `${cart.drink}`;
+
+                // Append the image and text to the cart item
+                cartItem.appendChild(cartImage);
                 cartItem.appendChild(cartText);
+
+                // Append the cart item to the cart content
                 cartContent.appendChild(cartItem);
             }
 
             document.getElementById('total-price').textContent = totalPrice.toFixed(2);
         }
-
-        // Handle LED control
-        document.addEventListener('DOMContentLoaded', () => {
-            const ledOnButton = document.getElementById('ledOn');
-            const ledOffButton = document.getElementById('ledOff');
-
-            // Control LED status by sending 1 or 0 to Firebase
-            ledOnButton.addEventListener('click', () => set(ref(database, 'ledStatus'), 1));
-            ledOffButton.addEventListener('click', () => set(ref(database, 'ledStatus'), 0));
-
-            // Listen for changes to LED status in Firebase
-            const ledStatusRef = ref(database, 'ledStatus');
-            onValue(ledStatusRef, (snapshot) => {
-                const ledStatus = snapshot.val();
-                document.getElementById('status').innerText = ledStatus == 1 ? "LED is ON" : "LED is OFF";
-            });
-        });
     </script>
+
 
 </body>
 
