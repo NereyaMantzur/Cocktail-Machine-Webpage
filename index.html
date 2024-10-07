@@ -36,11 +36,8 @@
             background-color: #111;
             display: flex;
             justify-content: space-between;
-            /* Space between logo, nav links, and cart icon */
             align-items: center;
-            /* Center items vertically */
             padding: 20px;
-            /* Adjusted for consistent spacing */
             position: fixed;
             top: 0;
             left: 0;
@@ -128,7 +125,7 @@
         .container {
             max-width: 100%;
             margin-top: 60px;
-            padding: 40px;
+            padding: 100px;
             text-align: center;
             background-color: #222;
             padding-bottom: 30px;
@@ -170,6 +167,19 @@
             height: 200px;
             object-fit: cover;
             border-radius: 15px;
+        }
+
+        .diy-select {
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .ingredient-select {
+            background-color: #555;
+            border-radius: 5px;
+            margin-top: 10px;
+            border-color: transparent;
+            box-shadow: 0 0 2px rgb(255, 255, 255);
         }
 
         button {
@@ -299,7 +309,6 @@
             border-radius: 5px;
             cursor: pointer;
             width: 50%;
-            /* Full width for button */
             font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s ease;
@@ -338,7 +347,7 @@
             }
 
             .cocktailItem img {
-                width: 100%;
+                width: 90%;
                 height: auto;
             }
 
@@ -434,7 +443,9 @@
                     <h2>Margarita</h2>
                     <img src="./images/margarita.jpg" alt="Margarita" />
                     <p>Price: $10</p>
-                    <button onclick="addToCart('Margarita',1, 10)">Add to
+                    <button
+                        onclick="addToCart('Margarita', 1, 10, 'Tequila', 60, 'Triple Sec', 30, 'Lime Juice', 30)">Add
+                        to
                         Cart</button>
                 </div>
 
@@ -442,97 +453,92 @@
                     <h2>Martini</h2>
                     <img src="./images/martini.jpg" alt="Martini" />
                     <p>Price: $12</p>
-                    <button onclick="addToCart('Martini',1, 12)">Add to
-                        Cart</button>
+                    <button onclick="addToCart('Martini', 1, 12, 'Gin', 90, 'Vermouth', 30)">Add to Cart</button>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Bloody Mary</h2>
                     <img src="./images/bloody mary.jpg" alt="Bloody Mary" />
                     <p>Price: $11</p>
-                    <button onclick="addToCart('Bloody Mary', 1, 11)">Add
-                        to Cart</button>
+                    <button onclick="addToCart('Bloody Mary', 1, 11, 'Vodka', 60, 'Tomato Juice', 60)">Add to
+                        Cart</button>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Pina Colada</h2>
                     <img src="./images/pina colada.jpg" alt="Pina Colada" />
                     <p>Price: $13</p>
-                    <button onclick="addToCart('Pina Colada',1, 13)">Add
-                        to Cart</button>
+                    <button
+                        onclick="addToCart('Pina Colada', 1, 13, 'Rum', 60, 'Coconut Cream', 30, 'Pineapple Juice', 30)">Add
+                        to
+                        Cart</button>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>DIY</h2>
                     <img src="./images/diy.jpg" alt="DIY" />
-                    <p>Price: $15</p>
-                    <button onclick="addToCart('DIY', 1, 15)">Add to
-                        Cart</button>
 
                     <!-- Dropdowns for selecting ingredients and amounts in the same line -->
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <label for="ingredient1" style="flex: 1; font-size: 12px;">Ingredient 1:</label>
-                        <select id="ingredient1" class="ingredient-select" style="flex: 2; margin-right: 10px;">
-                            <option value="">Select an ingredient</option>
-                            <option value="jin">Jin</option>
-                            <option value="vodka">Vodka</option>
-                            <option value="rum">Rum</option>
-                            <option value="whiskey">Whiskey</option>
-                            <option value="orange">Orange Juice</option>
-                            <option value="tonic">Tonic Water</option>
-                            <option value="coke">Coke</option>
-                        </select>
-                        <select id="amount1" style="flex: 1;">
-                            <option value="30">30 ml</option>
-                            <option value="60">60 ml</option>
-                            <option value="90">90 ml</option>
-                        </select>
-                    </div>
+                    <div class="diy-select">
+                        <div>
+                            <select id="ingredient1" class="ingredient-select">
+                                <option value="">Ingredient 1</option>
+                                <option value="jin">Jin</option>
+                                <option value="vodka">Vodka</option>
+                                <option value="rum">Rum</option>
+                                <option value="whiskey">Whiskey</option>
+                                <option value="orange">Orange Juice</option>
+                                <option value="tonic">Tonic Water</option>
+                                <option value="coke">Coke</option>
+                            </select>
+                            <select id="amount1" class="ingredient-select">
+                                <option value="30">30 ml</option>
+                                <option value="60">60 ml</option>
+                                <option value="90">90 ml</option>
+                            </select>
+                        </div>
 
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <label for="ingredient2" style="flex: 1; font-size: 12px;">Ingredient 2:</label>
-                        <select id="ingredient2" class="ingredient-select" style="flex: 2; margin-right: 10px;">
-                            <option value="">Select an ingredient</option>
-                            <option value="jin">Jin</option>
-                            <option value="vodka">Vodka</option>
-                            <option value="rum">Rum</option>
-                            <option value="whiskey">Whiskey</option>
-                            <option value="orange">Orange Juice</option>
-                            <option value="tonic">Tonic Water</option>
-                            <option value="coke">Coke</option>
-                        </select>
-                        <select id="amount2" style="flex: 1;">
-                            <option value="30">30 ml</option>
-                            <option value="60">60 ml</option>
-                            <option value="90">90 ml</option>
-                        </select>
-                    </div>
+                        <div>
+                            <select id="ingredient2" class="ingredient-select">
+                                <option value="">Ingredient 2</option>
+                                <option value="jin">Jin</option>
+                                <option value="vodka">Vodka</option>
+                                <option value="rum">Rum</option>
+                                <option value="whiskey">Whiskey</option>
+                                <option value="orange">Orange Juice</option>
+                                <option value="tonic">Tonic Water</option>
+                                <option value="coke">Coke</option>
+                            </select>
+                            <select id="amount2" class="ingredient-select">
+                                <option value="30">30 ml</option>
+                                <option value="60">60 ml</option>
+                                <option value="90">90 ml</option>
+                            </select>
+                        </div>
 
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <label for="ingredient3" style="flex: 1; font-size: 12px;">Ingredient 3:</label>
-                        <select id="ingredient3" class="ingredient-select" style="flex: 2; margin-right: 10px;">
-                            <option value="">Select an ingredient</option>
-                            <option value="jin">Jin</option>
-                            <option value="vodka">Vodka</option>
-                            <option value="rum">Rum</option>
-                            <option value="whiskey">Whiskey</option>
-                            <option value="orange">Orange Juice</option>
-                            <option value="tonic">Tonic Water</option>
-                            <option value="coke">Coke</option>
-                        </select>
-                        <select id="amount3" style="flex: 1;">
-                            <option value="30">30 ml</option>
-                            <option value="60">60 ml</option>
-                            <option value="90">90 ml</option>
-                        </select>
+                        <div>
+                            <select id="ingredient3" class="ingredient-select">
+                                <option value="">Ingredient 3</option>
+                                <option value="jin">Jin</option>
+                                <option value="vodka">Vodka</option>
+                                <option value="rum">Rum</option>
+                                <option value="whiskey">Whiskey</option>
+                                <option value="orange">Orange Juice</option>
+                                <option value="tonic">Tonic Water</option>
+                                <option value="coke">Coke</option>
+                            </select>
+                            <select id="amount3" class="ingredient-select">
+                                <option value="30">30 ml</option>
+                                <option value="60">60 ml</option>
+                                <option value="90">90 ml</option>
+                            </select>
+                        </div>
                     </div>
-
+                    <p>Price: $15</p>
+                    <button onclick="checkTotalAndAddToCart()">Add to Cart</button>
+                    Cart</button>
                 </div>
 
-            </div>
         </section>
 
         <section id="faq" style="text-align: left;">
@@ -613,10 +619,10 @@
             appId: "1:809622484576:web:da16e7f3063ebf9f253505",
             measurementId: "G-JMB3NE6XHN"
         };
+
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         let cart = {};
-        let orderCounter = 1; // Initialize a counter for order IDs
         let currentOrderStatus = 'complete'; // Initial order status
 
         // Function to toggle mobile menu
@@ -625,18 +631,73 @@
             navLinks.classList.toggle('show');
         };
 
-        // Add cocktail to cart
-        window.addToCart = function (drink, quantity, price) {
+        // Declare checkTotalAndAddToCart as a global function
+        window.checkTotalAndAddToCart = function () {
+            // Get selected amounts
+            var amount1 = parseInt(document.getElementById("amount1").value) || 0;
+            var amount2 = parseInt(document.getElementById("amount2").value) || 0;
+            var amount3 = parseInt(document.getElementById("amount3").value) || 0;
+
+            // Calculate total ml
+            var totalAmount = amount1 + amount2 + amount3;
+
+            // Check if total amount is less than or equal to 120 ml
+            if (totalAmount <= 120) {
+                // Get selected ingredients
+                var ingredient1 = document.getElementById("ingredient1").value;
+                var ingredient2 = document.getElementById("ingredient2").value;
+                var ingredient3 = document.getElementById("ingredient3").value;
+
+                if (!ingredient1 || !ingredient2 || (ingredient3 && ingredient3 === "")) {
+                    alert("Please select all ingredients.");
+                    return; // Exit the function if any ingredient is not selected
+                }
+
+                // Add to cart with ingredients and amounts
+                addToCart('DIY', 1, 15, ingredient1, amount1, ingredient2, amount2, ingredient3, amount3);
+            } else {
+                alert("Total must be less or equal to 120 ml.");
+            }
+        };
+
+        // Toggle cart display
+        window.toggleCart = function () {
+            const cartSidebar = document.getElementById('cart-sidebar');
+            const isOpen = cartSidebar.classList.toggle('open');
+
+        };
+
+        // Add cocktail to cart (updated version)
+        window.addToCart = function (drink, quantity, price, ingredient1, amount1, ingredient2, amount2, ingredient3, amount3) {
             quantity = parseInt(quantity);
+
             if (quantity > 0) {
                 if (currentOrderStatus === 'complete') {
                     // Dynamically generate the image URL based on the drink name
                     const image = `images/${drink.toLowerCase()}.jpg`;
 
-                    // Store drink, quantity, price, and image in the cart
-                    cart = { drink, quantity, price, image };
+                    // Store drink, quantity, price, image, ingredients, and amounts in the cart
+                    cart = {
+                        drink,
+                        quantity,
+                        price,
+                        image,
+                        ingredient1,
+                        amount1,
+                        ingredient2,
+                        amount2,
+                        ingredient3,
+                        amount3
+                    };
+
+                    // Update the cart display
                     updateCartDisplay();
-                    alert(`${quantity} ${drink}(s) added to cart`);
+
+                    // Optionally toggle the cart display
+                    toggleCart();
+
+                    // Alert the user about the added drink
+                    alert(`${quantity} ${drink}(s) added to cart!`);
                 } else {
                     alert("Cannot place another order until the current one is complete.");
                 }
@@ -645,23 +706,52 @@
             }
         };
 
-        // Toggle cart display
-        window.toggleCart = function () {
+
+
+        // Close cart if clicking outside
+        document.addEventListener('click', function (event) {
             const cartSidebar = document.getElementById('cart-sidebar');
-            cartSidebar.classList.toggle('open');
-        };
+            const cartIcon = document.querySelector('.cart-icon');
+
+            // Check if the click is outside the cart sidebar and cart icon
+            if (!cartSidebar.contains(event.target) && !cartIcon.contains(event.target)) {
+                // Close the cart sidebar and set aria-expanded to false
+                cartSidebar.classList.remove('open');
+                cartIcon.setAttribute('aria-expanded', 'false');
+            }
+        });
 
         // Place order and send it to Firebase
         window.placeOrder = async function () {
             if (cart.drink && currentOrderStatus === 'complete') {
                 try {
-                    await set(ref(database, 'cocktailName'), cart.drink);
+                    if (cart.drink === 'DIY') {
+                        // If it's a DIY cocktail, send ingredients and amounts to Firebase
+                        await set(ref(database, 'cocktailName'), cart.drink);
+
+                        await set(ref(database, 'ingredients/ingredient1'), cart.ingredient1);
+                        await set(ref(database, 'ingredients/amount1'), cart.amount1);
+
+                        await set(ref(database, 'ingredients/ingredient2'), cart.ingredient2);
+                        await set(ref(database, 'ingredients/amount2'), cart.amount2);
+
+                        await set(ref(database, 'ingredients/ingredient3'), cart.ingredient3);
+                        await set(ref(database, 'ingredients/amount3'), cart.amount3);
+
+
+                    } else {
+                        // For non-DIY cocktails, only send the cocktail name
+                        await set(ref(database, 'cocktailName'), cart.drink);
+                    }
+
+                    // Set the order status to pending
                     await set(ref(database, 'orderStatus'), "pending");
                     currentOrderStatus = "pending";
                     alert("Order placed successfully!");
 
-                    cart = {}; // Clear cart
+                    cart = {}; // Clear the cart after placing the order
                     updateCartDisplay();
+
                 } catch (error) {
                     console.error("Error sending data to Firebase:", error);
                     alert("Error communicating with Firebase. Please check the connection.");
@@ -714,6 +804,7 @@
             document.getElementById('total-price').textContent = totalPrice.toFixed(2);
         }
     </script>
+
 
 
 </body>
