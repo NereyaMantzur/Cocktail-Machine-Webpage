@@ -52,6 +52,7 @@
         }
 
         .logo img {
+            mix-blend-mode: lighten;
             height: 40px;
         }
 
@@ -180,6 +181,8 @@
             margin-top: 10px;
             border-color: transparent;
             box-shadow: 0 0 2px rgb(255, 255, 255);
+            color: #131212;
+
         }
 
         button {
@@ -650,9 +653,9 @@
                 var ingredient2 = document.getElementById("ingredient2").value;
                 var ingredient3 = document.getElementById("ingredient3").value;
 
-                if (!ingredient1 || !ingredient2 || (ingredient3 && ingredient3 === "")) {
-                    alert("Please select all ingredients.");
-                    return; // Exit the function if any ingredient is not selected
+                if (!ingredient1 || !ingredient2 || !ingredient3) {
+                    alert("Please select at least one ingredient.");
+                    return; // Exit the function if none of the ingredients are selected
                 }
 
                 // Add to cart with ingredients and amounts
