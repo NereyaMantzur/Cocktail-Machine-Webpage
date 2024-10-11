@@ -54,7 +54,7 @@
                     <img src="./images/margarita.jpg" alt="Margarita" />
                     <p>Price: $10</p>
                     <button
-                        onclick="addToCart('Margarita', 1, 10, 'Tequila', 60, 'Triple Sec', 30, 'Lime Juice', 30)">Add
+                        onclick="addToCart('Margarita', 1, 10, 'Tequila', 60, 'Triple Sec', 30, 'Lime Juice', 30); toggleCart()">Add
                         to
                         Cart</button>
                 </div>
@@ -63,14 +63,14 @@
                     <h2>Martini</h2>
                     <img src="./images/martini.jpg" alt="Martini" />
                     <p>Price: $12</p>
-                    <button onclick="addToCart('Martini', 1, 12, 'Gin', 90, 'Vermouth', 30)">Add to Cart</button>
+                    <button onclick="addToCart('Martini', 1, 12, 'Gin', 90, 'Vermouth', 30); toggleCart()">Add to Cart</button>
                 </div>
 
                 <div class="cocktailItem">
                     <h2>Bloody Mary</h2>
                     <img src="./images/bloody mary.jpg" alt="Bloody Mary" />
                     <p>Price: $11</p>
-                    <button onclick="addToCart('Bloody Mary', 1, 11, 'Vodka', 60, 'Tomato Juice', 60)">Add to
+                    <button onclick="addToCart('Bloody Mary', 1, 11, 'Vodka', 60, 'Tomato Juice', 60); toggleCart()">Add to
                         Cart</button>
                 </div>
 
@@ -79,7 +79,7 @@
                     <img src="./images/pina colada.jpg" alt="Pina Colada" />
                     <p>Price: $13</p>
                     <button
-                        onclick="addToCart('Pina Colada', 1, 13, 'Rum', 60, 'Coconut Cream', 30, 'Pineapple Juice', 30)">Add
+                        onclick="addToCart('Pina Colada', 1, 13, 'Rum', 60, 'Coconut Cream', 30, 'Pineapple Juice', 30); toggleCart()">Add
                         to
                         Cart</button>
                 </div>
@@ -95,8 +95,6 @@
                                 <option value="">Ingredient 1</option>
                                 <option value="jin">Jin</option>
                                 <option value="vodka">Vodka</option>
-                                <option value="rum">Rum</option>
-                                <option value="whiskey">Whiskey</option>
                                 <option value="orange">Orange Juice</option>
                                 <option value="tonic">Tonic Water</option>
                                 <option value="coke">Coke</option>
@@ -113,8 +111,6 @@
                                 <option value="">Ingredient 2</option>
                                 <option value="jin">Jin</option>
                                 <option value="vodka">Vodka</option>
-                                <option value="rum">Rum</option>
-                                <option value="whiskey">Whiskey</option>
                                 <option value="orange">Orange Juice</option>
                                 <option value="tonic">Tonic Water</option>
                                 <option value="coke">Coke</option>
@@ -131,8 +127,6 @@
                                 <option value="">Ingredient 3</option>
                                 <option value="jin">Jin</option>
                                 <option value="vodka">Vodka</option>
-                                <option value="rum">Rum</option>
-                                <option value="whiskey">Whiskey</option>
                                 <option value="orange">Orange Juice</option>
                                 <option value="tonic">Tonic Water</option>
                                 <option value="coke">Coke</option>
@@ -145,7 +139,7 @@
                         </div>
                     </div>
                     <p>Price: $15</p>
-                    <button onclick="checkTotalAndAddToCart()">Add to Cart</button>
+                    <button onclick="checkTotalAndAddToCart(); toggleCart()">Add to Cart</button>
                     Cart</button>
                 </div>
 
