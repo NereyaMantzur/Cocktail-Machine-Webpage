@@ -205,7 +205,7 @@
             margin-top: 10px;
             border-color: transparent;
             box-shadow: 0 0 2px rgb(255, 255, 255);
-            color: #fff;
+            color: #131212;
 
         }
 
@@ -303,7 +303,6 @@
             display: block;
             font-size: 16px;
             font-weight: bold;
-            margin-bottom: 5px;
             color: #fff;
             width: 80%;
             text-align: left;
@@ -313,7 +312,6 @@
         #contact-form textarea {
             width: 80%;
             padding: 10px;
-            margin-bottom: 15px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #333;
@@ -561,7 +559,6 @@
                     </div>
                     <p>Price: $15</p>
                     <button onclick="checkTotalAndAddToCart(); toggleCart()">Add to Cart</button>
-                    Cart</button>
                 </div>
 
         </section>
@@ -599,43 +596,10 @@
         </section>
 
         <section class="form">
-            <script>
-                function handleFormSubmit(event) {
-                    event.preventDefault();  // Prevent the default form submission
-
-                    // Capture form input values
-                    const name = document.getElementById('nameInput').value;
-                    const phone = document.getElementById('phoneInput').value;
-                    const message = document.getElementById('messageInput').value;
-
-                    // Check if values are captured
-                    console.log("Name: " + name);
-                    console.log("Phone: " + phone);
-                    console.log("Message: " + message);
-
-                    // Build the subject
-                    const subject = `${name} ${phone}`;
-
-                    // Append name and phone to the body message
-                    const fullMessage = `${message}\n\n---\nName: ${name}\nPhone: ${phone}`;
-                    const body = encodeURIComponent(fullMessage);  // Encode the body with appended name and phone
-
-                    // Build the mailto link with subject and body
-                    const mailtoLink = `mailto:smartup.cocktails.machine@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-
-                    // Set a short timeout to ensure the data is processed before navigating
-                    setTimeout(function () {
-                        // Open the mailto link in the user's default email client
-                        window.location.href = mailtoLink;
-                    }, 100); // Wait 100 milliseconds before executing
-                }
-            </script>
-
-
 
 
             <form id="contact-form" onsubmit="handleFormSubmit(event)">
-                <h2 class="">Contact Us:</h2>
+                <h2 class="">Contact Us</h2>
                 <label for="nameInput">Name:</label><br>
                 <input type="text" id="nameInput" name="name" required><br><br>
 
@@ -645,7 +609,7 @@
                 <label for="messageInput">Message:</label><br>
                 <textarea id="messageInput" name="message" rows="4" cols="50" required></textarea><br><br>
 
-                <input type="submit" value="Send Email">
+                <button type="submit" value="Send Email">submit</button>
             </form>
 
         </section>
@@ -662,6 +626,37 @@
         </div>
 
 
+        <script>
+            function handleFormSubmit(event) {
+                event.preventDefault();  // Prevent the default form submission
+
+                // Capture form input values
+                const name = document.getElementById('nameInput').value;
+                const phone = document.getElementById('phoneInput').value;
+                const message = document.getElementById('messageInput').value;
+
+                // Check if values are captured
+                console.log("Name: " + name);
+                console.log("Phone: " + phone);
+                console.log("Message: " + message);
+
+                // Build the subject
+                const subject = `${name} ${phone}`;
+
+                // Append name and phone to the body message
+                const fullMessage = `${message}\n\n---\nName: ${name}\nPhone: ${phone}`;
+                const body = encodeURIComponent(fullMessage);  // Encode the body with appended name and phone
+
+                // Build the mailto link with subject and body
+                const mailtoLink = `mailto:smartup.cocktails.machine@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+                // Set a short timeout to ensure the data is processed before navigating
+                setTimeout(function () {
+                    // Open the mailto link in the user's default email client
+                    window.location.href = mailtoLink;
+                }, 100); // Wait 100 milliseconds before executing
+            }
+        </script>
         <script type="module" defer>
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
             import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
@@ -862,10 +857,6 @@
                 document.getElementById('total-price').textContent = totalPrice.toFixed(2);
             }
         </script>
-
-
-
-
 
 
 </body>
