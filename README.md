@@ -1,1 +1,1 @@
-https://nereyamantzur.github.io/cocktails/index.html
+https://nereyamantzur.github.io/Cocktail-Machine-Webpage/index.html
