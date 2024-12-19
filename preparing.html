@@ -6,13 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 
-<body>
+<body style="  background-color: #222;">
+    <form id="contact-form">
+        <svg width="0" height="0">
+            <filter id="colorFilter">
+<feColorMatrix type="matrix" values="
+    1 44 0 0 -0.3
+    0 74 33 0 -0.3
+    0 0 44 0 -1
+    -1 -1 -1 1 0
+" />
 
-    <div class="second-container">
-        <img src="./images/shaker.gif" alt="">
-    </div>
+            </filter>
+        </svg>
+        <div class="second-container">
+            <video src="./images/prep.webm" alt="prep" loop autoplay muted style="filter: url(#colorFilter);"></video>
+        </div>
+    </form>
 
 </body>
 

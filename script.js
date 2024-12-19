@@ -1,17 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
-
-// Initialize Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyBg05UpDLjM6M-p2eY8U6WeFGe61vtYBC4",
-    authDomain: "cocktails-6acf5.firebaseapp.com",
-    databaseURL: "https://cocktails-6acf5-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "cocktails-6acf5",
-    storageBucket: "cocktails-6acf5.appspot.com",
-    messagingSenderId: "809622484576",
-    appId: "1:809622484576:web:da16e7f3063ebf9f253505",
-    measurementId: "G-JMB3NE6XHN"
-};
+import {firebaseConfig} from "firebaseConfig.js";
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);

@@ -801,6 +801,7 @@
                         await set(ref(database, 'orderStatus'), "pending");
                         currentOrderStatus = "pending";
                         alert("Order placed successfully!");
+                        window.location.href = "preparing.html";
 
                         cart = {}; // Clear the cart after placing the order
                         updateCartDisplay();
